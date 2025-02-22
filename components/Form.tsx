@@ -9,6 +9,7 @@ const Form = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
+            
 
         >
             <div className='flex flex-row justify-around items-center bg-black h-full'>
