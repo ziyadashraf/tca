@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import {
   Dialog,
   DialogPanel,
@@ -25,12 +25,13 @@ import EventsIcon from "@/public/events.svg";
 import WebDevIcon from "@/public/webdevelopment.svg";
 import { getApiPath, getLanguage, switchLanguage } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const products = [
   {
     name: "Branding",
     description: "Establish a strong and impactful brand identity",
-    href: "#",
+    href: "/services/branding",
     icon: (props: any) => (
       <Image src={BrandingIcon} alt="Branding" {...props} />
     ),
@@ -39,7 +40,7 @@ const products = [
     name: "Campaigns",
     description:
       "Crafting creative concepts and content creation for diverse media platforms",
-    href: "#",
+    href: "/services/campaigns",
     icon: (props: any) => (
       <Image src={CampaignsIcon} alt="Campaigns" {...props} />
     ),
@@ -47,7 +48,7 @@ const products = [
   {
     name: "3D Animations",
     description: "Immerse your audience in compelling 3D animated visuals",
-    href: "#",
+    href: "/services/3d-animations",
     icon: (props: any) => (
       <Image src={AnimationsIcon} alt="3D Animations" {...props} />
     ),
@@ -56,7 +57,7 @@ const products = [
     name: "Motion Graphics",
     description:
       "Bringing ideas to life through captivating visual storytelling",
-    href: "#",
+    href: "/services/motion-graphics",
     icon: (props: any) => (
       <Image src={MotionIcon} alt="Motion Graphics" {...props} />
     ),
@@ -64,7 +65,7 @@ const products = [
   {
     name: "Events Design",
     description: "Creative solutions for your events.",
-    href: "#",
+    href: "/services/events-design",
     icon: (props: any) => (
       <Image src={EventsIcon} alt="Events Design" {...props} />
     ),
@@ -72,7 +73,7 @@ const products = [
   {
     name: "Web Development",
     description: "Custom websites that prioritize UX and visual appeal",
-    href: "#",
+    href: "/services/web-development",
     icon: (props: any) => (
       <Image src={WebDevIcon} alt="Web Development" {...props} />
     ),
@@ -104,9 +105,8 @@ export default function Example({ services }: { services: any }) {
 
   return (
     <header
-      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <nav
         aria-label="Global"
@@ -231,21 +231,19 @@ export default function Example({ services }: { services: any }) {
               <div className="p-2">
                 <button
                   onClick={() => handleSwitchLanguage("en")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    getLanguage() === "en"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "en"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-100 hover:bg-gray-900"
+                    }`}
                 >
                   English
                 </button>
                 <button
                   onClick={() => handleSwitchLanguage("ar")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    getLanguage() === "ar"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "ar"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-100 hover:bg-gray-900"
+                    }`}
                 >
                   عربي
                 </button>
@@ -322,22 +320,20 @@ export default function Example({ services }: { services: any }) {
                 <div className="space-y-1">
                   <button
                     onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${
-                      getLanguage() === "en"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${getLanguage() === "en"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     English
                   </button>
                   <button
                     onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${
-                      getLanguage() === "ar"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${getLanguage() === "ar"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     عربي

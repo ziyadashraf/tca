@@ -54,7 +54,7 @@ const services = [
 
 export default function Services() {
     return (
-        <div className="bg-white pb-24 sm:py-32 px-60">
+        <div className="bg-white lg:px-64 py-24 md:py-16 px-6">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
                 <div className="mx-auto  max-w-2xl   lg:max-w-none">

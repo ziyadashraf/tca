@@ -4,16 +4,10 @@ import Services from "@/components/Services";
 import Partners from "@/components/Partners";
 import Stats from "@/components/Stats";
 import Form from "@/components/Form";
-import Branding from "@/public/BrandingDark.svg";
-import Campaigns from "@/public/CampaignsDark.svg";
-import Animations from "@/public/3danimationDark.svg";
-import Motion from "@/public/motiongraphicsDark.svg";
-import Events from "@/public/eventsDark.svg";
-import WebDevelopment from "@/public/webdevelopmentDark.svg";
-import HeroSuggested from "@/components/HeroSuggested";
 import { fetchServicesData } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import { translateObjectValues } from "@/utils/translate";
+import HeroSuggested from "@/components/HeroSuggested";
 
 const backUpServices = [
   {

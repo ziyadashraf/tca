@@ -10,7 +10,7 @@ export default function Projects() {
                 src={FormPic}
                 className="aspect-video  w-full h-60 bg-gray-50 object-cover brightness-50"
             />
-            <div className="bg-white px-6 py-32 lg:px-8">
+            <div className="bg-white px-6 py-24 lg:px-8">
                 <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
                     <p className="text-base font-semibold leading-7 text-gray-600">Introducing</p>
                     <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Project Title</h1>

@@ -20,14 +20,7 @@ const About = () => {
                 image={FormPic}
                 mode="white"
             />
-            <Section
-                Title="Our Journey"
-                Paragraph=''
-                Subtitle="Empowering Brands Through Creativity"
-                image=""
-                mode="dark"
-            />
-
+           
             <Journey />
             {/* <ParallaxImage /> */}
             <Form />

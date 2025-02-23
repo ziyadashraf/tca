@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from 'next/image'
-
+import TheLine from './TheLine'
 
 interface SectionProps {
     Title: string;
@@ -10,9 +10,11 @@ interface SectionProps {
 }
 const Section = ({ Title, Paragraph, Subtitle, image, mode }: SectionProps) => {
     return (
-        <div className={` ${mode === 'dark' ? 'bg-black' : 'bg-white'} flex flex-row justify-between items-center gap-16 px-64 py-32`}>
-            <div className='w-1/2 flex flex-col gap-8 items-start justify-start h-full'>
-                <div>
+        <div className={`${mode === 'dark' ? 'bg-black' : 'bg-white'} flex flex-col md:flex-row justify-between items-center gap-8 md:gap-16 lg:px-64 py-12 md:py-16 px-6`}>
+            <div className='w-full md:w-1/2 flex flex-col  items-start justify-start h-full relative'>
+                <TheLine mode={mode} size='1/4' />
+
+                <div className='pl-6'> {/* Added padding to move content away from lines */}
                     {Title && (
                         <p className={`${mode === 'dark' ? 'text-white' : 'text-black'} text-lg font-light mb-4 uppercase`}>
                             {Title}
@@ -25,14 +27,14 @@ const Section = ({ Title, Paragraph, Subtitle, image, mode }: SectionProps) => {
                     )}
                 </div>
                 {Paragraph && (
-                    <p className={`${mode === 'dark' ? 'text-white' : 'text-black'} text-md text-justify`}>
+                    <p className={`${mode === 'dark' ? 'text-white' : 'text-black'} text-md text-justify pl-6`}>
                         {Paragraph}
                     </p>
                 )}
             </div>
             {image && (
-                <div className='w-1/2'>
-                    <Image src={image} alt={Title} width={1000} height={1000} />
+                <div className='w-full md:w-1/2 mt-8 md:mt-0'>
+                    <Image src={image} alt={Title} width={1000} height={1000} className="w-full" />
                 </div>
             )}
         </div>

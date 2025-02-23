@@ -19,7 +19,7 @@ const Stats = async () => {
   const stats = await translateObjectValues(rawStats, lang);
 
   return (
-    <div className="p-64 py-32 flex flex-row justify-between items-start bg-white ">
+    <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white ">
       <div className="w-full">
         <h6 className="text-black text-2xl font-medium mb-12">
           {stats.title || "TCA in Numbers"}

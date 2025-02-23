@@ -3,6 +3,8 @@ import hero from "@/public/images/Heros.png";
 import { fetchHomeData, getApiPath, getLanguage } from "@/utils/helpers";
 import { translateObjectValues, translateText } from "@/utils/translate";
 import { cookies } from "next/headers";
+import Link from "next/link";
+import Image from "next/image";
 
 export default async function HeroSuggested() {
   const { rawLanding } = await fetchHomeData();
@@ -21,14 +23,16 @@ export default async function HeroSuggested() {
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               aria-hidden="true"
-              className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
+              className={`absolute inset-y-0 ${lang === "ar" ? "left-8 -scale-x-100" : "right-8"
+                } hidden h-full w-80 ${lang === "ar" ? "-translate-x-1/2" : "translate-x-1/2"
+                } transform fill-white lg:block`}
             >
               <polygon points="0,0 90,0 50,100 0,100" />
             </svg>
 
             <div className="relative px-6 py-12 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl fade-in">
                   {landing?.heroText || (
                     <>
                       WELCOME TO
@@ -37,23 +41,23 @@ export default async function HeroSuggested() {
                     </>
                   )}
                 </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
+                <p className="mt-6 text-lg leading-8 text-gray-600 fade-in">
                   {landing?.subText ||
                     "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                 </p>
                 <div className="mt-10 flex items-center gap-x-6">
-                  <a
+                  <Link
                     href="#"
                     className="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Get started
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >
                     Learn more <span aria-hidden="true">→</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -64,6 +68,8 @@ export default async function HeroSuggested() {
             alt={landing?.heroImage?.alt || "Hero Image"}
             src={getApiPath(landing?.heroImage?.url) || hero.src}
             className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+            width={1000}
+            height={1000}
           />
         </div>
       </div>
