@@ -1,8 +1,17 @@
 import React from "react";
 import { fetchHomeData, getApiPath } from "@/utils/helpers";
+import { cookies } from "next/headers";
+import { translateObjectValues } from "@/utils/translate";
 
 const Partners = async () => {
-  const { partners } = await fetchHomeData();
+  const { rawPartners } = await fetchHomeData();
+
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+
+  const partners = await translateObjectValues(rawPartners, lang);
+
+  console.log(partners);
 
   return (
     <div className="p-64 py-32 flex flex-row justify-between items-start bg-black">

@@ -12,6 +12,8 @@ import Events from "@/public/eventsDark.svg";
 import WebDevelopment from "@/public/webdevelopmentDark.svg";
 import HeroSuggested from "@/components/HeroSuggested";
 import { fetchServicesData } from "@/utils/helpers";
+import { cookies } from "next/headers";
+import { translateObjectValues } from "@/utils/translate";
 
 const backUpServices = [
   {
@@ -77,7 +79,12 @@ const backUpServices = [
 ];
 
 export default async function Home() {
-  const { services } = await fetchServicesData();
+  const { rawServices } = await fetchServicesData();
+
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+
+  const services = await translateObjectValues(rawServices, lang);
 
   return (
     <>

@@ -23,7 +23,8 @@ import AnimationsIcon from "@/public/3danimation.svg";
 import MotionIcon from "@/public/motiongraphics.svg";
 import EventsIcon from "@/public/events.svg";
 import WebDevIcon from "@/public/webdevelopment.svg";
-import { getApiPath, switchLanguage } from "@/utils/helpers";
+import { getApiPath, getLanguage, switchLanguage } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
 const products = [
   {
@@ -82,7 +83,7 @@ export default function Example({ services }: { services: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [language, setLanguage] = useState("en");
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,8 +96,10 @@ export default function Example({ services }: { services: any }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
-  const handleSwitchLanguage = (lang: "en" | "er") => {
+  const handleSwitchLanguage = (lang: "en" | "ar") => {
     switchLanguage(lang);
+
+    router.refresh();
   };
 
   return (
@@ -214,7 +217,7 @@ export default function Example({ services }: { services: any }) {
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-100">
               <GlobeAltIcon className="h-5 w-5" />
-              {language === "en" ? "English" : "عربي"}
+              {getLanguage() === "en" ? "English" : "عربي"}
               <ChevronDownIcon
                 aria-hidden="true"
                 className="h-5 w-5 flex-none text-gray-500"
@@ -227,9 +230,9 @@ export default function Example({ services }: { services: any }) {
             >
               <div className="p-2">
                 <button
-                  onClick={() => setLanguage("en")}
+                  onClick={() => handleSwitchLanguage("en")}
                   className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    language === "en"
+                    getLanguage() === "en"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                   }`}
@@ -237,9 +240,9 @@ export default function Example({ services }: { services: any }) {
                   English
                 </button>
                 <button
-                  onClick={() => setLanguage("ar")}
+                  onClick={() => handleSwitchLanguage("ar")}
                   className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    language === "ar"
+                    getLanguage() === "ar"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                   }`}
@@ -318,9 +321,9 @@ export default function Example({ services }: { services: any }) {
                 </div>
                 <div className="space-y-1">
                   <button
-                    onClick={() => setLanguage("en")}
+                    onClick={() => handleSwitchLanguage("en")}
                     className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${
-                      language === "en"
+                      getLanguage() === "en"
                         ? "bg-gray-900 text-white"
                         : "text-gray-100 hover:bg-gray-900"
                     }`}
@@ -329,9 +332,9 @@ export default function Example({ services }: { services: any }) {
                     English
                   </button>
                   <button
-                    onClick={() => setLanguage("ar")}
+                    onClick={() => handleSwitchLanguage("ar")}
                     className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${
-                      language === "ar"
+                      getLanguage() === "ar"
                         ? "bg-gray-900 text-white"
                         : "text-gray-100 hover:bg-gray-900"
                     }`}

@@ -4,7 +4,8 @@ export const switchLanguage = (lang: "en" | "ar") => {
   Cookies.set("lang", lang, { expires: 365, path: "/" });
 };
 
-export const getLanguage = () => Cookies.get("lang");
+export const getLanguage = (): "en" | "ar" =>
+  Cookies.get("lang") as "en" | "ar";
 
 export const API_URL = "http://localhost:3001";
 
@@ -25,12 +26,12 @@ export const fetchHomeData = async () => {
 
   const data = await res.json();
 
-  const landing = data.landing;
-  const partners = data.partners;
-  const services = data.services;
-  const stats = data.stats;
+  const rawLanding = data.landing;
+  const rawPartners = data.partners;
+  const rawServices = data.services;
+  const rawStats = data.stats;
 
-  return { landing, partners, services, stats };
+  return { rawLanding, rawPartners, rawServices, rawStats };
 };
 
 export const fetchServicesData = async () => {
@@ -46,9 +47,9 @@ export const fetchServicesData = async () => {
 
   const data = await res.json();
 
-  const services = data?.docs || [];
+  const rawServices = data?.docs || [];
 
-  return { services };
+  return { rawServices };
 };
 
 export const fetchHeaderData = async () => {

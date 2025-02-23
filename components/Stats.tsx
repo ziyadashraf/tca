@@ -1,4 +1,6 @@
 import { fetchHomeData } from "@/utils/helpers";
+import { translateObjectValues } from "@/utils/translate";
+import { cookies } from "next/headers";
 import React from "react";
 
 const Stats = async () => {
@@ -9,7 +11,12 @@ const Stats = async () => {
     { number: "50", description: "Projects Completed" },
   ];
 
-  const { stats } = await fetchHomeData();
+  const { rawStats } = await fetchHomeData();
+
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+
+  const stats = await translateObjectValues(rawStats, lang);
 
   return (
     <div className="p-64 py-32 flex flex-row justify-between items-start bg-white ">

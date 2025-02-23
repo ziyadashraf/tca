@@ -1,9 +1,16 @@
 import hero from "@/public/images/Heros.png";
 
-import { fetchHomeData, getApiPath } from "@/utils/helpers";
+import { fetchHomeData, getApiPath, getLanguage } from "@/utils/helpers";
+import { translateObjectValues, translateText } from "@/utils/translate";
+import { cookies } from "next/headers";
 
 export default async function HeroSuggested() {
-  const { landing } = await fetchHomeData();
+  const { rawLanding } = await fetchHomeData();
+
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+
+  const landing = await translateObjectValues(rawLanding, lang);
 
   return (
     <div className="bg-white">

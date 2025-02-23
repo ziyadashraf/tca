@@ -1,8 +1,15 @@
 import { fetchHomeData } from "@/utils/helpers";
+import { translateObjectValues } from "@/utils/translate";
+import { cookies } from "next/headers";
 import React from "react";
 
 const Gradient = async () => {
-  const { services } = await fetchHomeData();
+  const { rawServices } = await fetchHomeData();
+
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+
+  const services = await translateObjectValues(rawServices, lang);
 
   return (
     <div
