@@ -66,7 +66,7 @@ export const fetchHeaderData = async () => {
   );
 
   const data = await res.json();
-  console.log(res);
+
   const products = data?.products || [];
 
   return { products };

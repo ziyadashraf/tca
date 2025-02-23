@@ -37,6 +37,7 @@ export default async function RootLayout({
       className="bg-black"
     >
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppWrapper>{children}</AppWrapper>

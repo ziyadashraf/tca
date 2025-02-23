@@ -41,5 +41,7 @@ export const translateObjectValues = async (
     }
   }
 
+  console.log("after", translatedObj.images?.[0]?.image?.url);
+
   return translatedObj;
 };
