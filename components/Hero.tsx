@@ -35,7 +35,7 @@ export default function Hero() {
                 </div>
                 <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 ">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+                        <h1 className="text-4xl font-medium tracking-tight text-black sm:text-6xl">
                             Welcome to<br />
                             The Cloud Agency
                         </h1>
@@ -58,10 +58,10 @@ export default function Hero() {
                     />
                 </div>
                 <div className="bg-gradient-to-b from-transparent via-black/90 to-black min-h-[800px] p-64 pb-24 flex flex-col justify-end items-end">
-                    <h6 className='text-white font-medium text-2xl mb-4'>At TCA, we're all about changing how businesses see design and creativity,
+                    <h6 className='text-white font-normal text-2xl mb-4 text-justify'>At TCA, we're all about changing how businesses see design and creativity,
                         We bring fresh ideas and one of a kind solutions to every project, pushing the boundaries of what design can do.
                     </h6>
-                    <p className='text-white text-lg'>
+                    <p className='text-white text-lg text-justify'>
                         Our team of professional designers and creative experts are dedicated to delivering exceptional results that exceed our clients'
                         expectations. We are committed to pushing boundaries and creating memorable experiences through our work.
                     </p>
