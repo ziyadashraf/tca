@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import Section from '../Section'
-
+import TheLine from '../TheLine'
 const posts = [
     {
         id: 1,
@@ -83,9 +83,12 @@ const News = () => {
 
     return (
         <div className='lg:px-64 pt-12 pb-24 px-6 bg-white'>
-            <div className='mb-8'>
-                <p className='text-black text-lg font-light mb-4 uppercase'>News</p>
-                <h6 className='text-black text-2xl font-medium mb-8'>The Cloud Agency In The Press</h6>
+            <div className='relative'>
+                <TheLine mode={'white'} size='1/4' />
+                <div className='mb-8 ps-6'>
+                    <p className='text-black text-lg font-light mb-4 uppercase'>News</p>
+                    <h6 className='text-black text-2xl font-medium mb-8'>The Cloud Agency In The Press</h6>
+                </div>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-1 gap-16 divide-y divide-gray-200'>

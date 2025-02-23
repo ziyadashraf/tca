@@ -65,7 +65,7 @@ export default function Services() {
                                     <Image src={service.image} alt={service.service} aria-hidden="true" className=" flex-none" width={50} height={50} />
                                     {service.service}
                                 </dt>
-                                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-700">
+                                <dd className="mt-4 flex flex-auto flex-col text-base text-justify leading-7 text-gray-700">
                                     <p className="flex-auto">{service.description}</p>
                                     <p className="mt-6">
                                         <Link href={service.link} className='bg-black text-white text-sm font-medium px-4 py-3 '>

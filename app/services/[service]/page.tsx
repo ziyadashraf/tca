@@ -1,47 +1,80 @@
+'use client'
+import { useState } from 'react';
+
 const posts = [
     {
         id: 1,
         title: 'TCA Branding',
-        href: '#',
         description: 'Explore the latest trends and best practices in web development, from responsive design to performance optimization.',
-        imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
-
+        images: [
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+            'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80',
+        ],
+        thumbnailImage: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
     },
     {
         id: 2,
         title: 'Mastering Identity',
-        href: '#',
         description: 'Learn how to design scalable and resilient cloud solutions for modern applications.',
-        imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80',
-
+        images: [
+            'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80',
+            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        ],
+        thumbnailImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80',
     },
     {
         id: 3,
         title: 'Whatever project name',
-        href: '#',
         description: 'Discover how to leverage AI capabilities to enhance your software solutions.',
-        imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-
+        images: [
+            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        ],
+        thumbnailImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
         id: 4,
         title: 'Whatever project name',
-        href: '#',
         description: 'Discover how to leverage AI capabilities to enhance your software solutions.',
-        imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-
+        images: [
+            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        ],
+        thumbnailImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
     {
         id: 5,
         title: 'Whatever project name',
-        href: '#',
         description: 'Discover how to leverage AI capabilities to enhance your software solutions.',
-        imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-
+        images: [
+            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        ],
+        thumbnailImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
     },
 ]
 
 export default function ServicesPage() {
+    const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<number | null>(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const selectedPost = selectedProject ? posts.find(post => post.id === selectedProject) : null;
+
+    const nextImage = () => {
+        if (selectedPost) {
+            setCurrentImageIndex((prev) =>
+                prev === selectedPost.images.length - 1 ? 0 : prev + 1
+            );
+        }
+    };
+
+    const previousImage = () => {
+        if (selectedPost) {
+            setCurrentImageIndex((prev) =>
+                prev === 0 ? selectedPost.images.length - 1 : prev - 1
+            );
+        }
+    };
+
     return (
         <div className="bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -56,22 +89,68 @@ export default function ServicesPage() {
                         <article
                             key={post.id}
                             className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+                            onClick={() => {
+                                setSelectedProject(post.id);
+                                setIsCarouselOpen(true);
+                            }}
                         >
-                            <img alt="" src={post.imageUrl} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+                            <img alt="" src={post.thumbnailImage} className="absolute inset-0 -z-10 h-full w-full object-cover" />
                             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 
-
                             <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
-                                <a href={post.href}>
-                                    <span className="absolute inset-0" />
-                                    {post.title}
-                                </a>
+                                {post.title}
                             </h3>
                         </article>
                     ))}
                 </div>
             </div>
+
+            {/* Updated Carousel Modal */}
+            {isCarouselOpen && selectedPost && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                    <div className="bg-white p-4 rounded-lg max-w-4xl w-full">
+                        <button
+                            onClick={() => {
+                                setIsCarouselOpen(false);
+                                setCurrentImageIndex(0); // Reset index when closing
+                            }}
+                            className="float-right text-gray-600 hover:text-gray-800"
+                        >
+                            Close
+                        </button>
+                        <div className="mt-4 relative">
+                            <img
+                                src={selectedPost.images[currentImageIndex]}
+                                alt=""
+                                className="w-full h-auto"
+                            />
+                            <button
+                                onClick={previousImage}
+                                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-r"
+                            >
+                                ←
+                            </button>
+                            <button
+                                onClick={nextImage}
+                                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-l"
+                            >
+                                →
+                            </button>
+                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                                {selectedPost.images.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentImageIndex(index)}
+                                        className={`w-2 h-2 rounded-full ${currentImageIndex === index ? 'bg-white' : 'bg-white/50'
+                                            }`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

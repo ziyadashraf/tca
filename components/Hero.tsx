@@ -39,7 +39,7 @@ export default function Hero() {
                             Welcome to<br />
                             The Cloud Agency
                         </h1>
-                        <p className="mt-6 text-xl leading-8 text-gray-800">
+                        <p className="mt-6 text-xl leading-8 text-gray-800 text-justify">
                             The first cloud agency based in the Kingdom of Saudi Arabia.
                         </p>
 

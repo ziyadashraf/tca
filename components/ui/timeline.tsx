@@ -1,6 +1,5 @@
 "use client";
 import {
-
     useScroll,
     useTransform,
     motion,
@@ -48,19 +47,52 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                         className="flex justify-start pt-10 md:pt-40 md:gap-10"
                     >
                         <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full rtl:flex-row-reverse">
-                            <div className="h-10 absolute start-3 md:start-3 w-10 rounded-full bg-black  flex items-center justify-center">
-
-                                <div className="h-4 w-4 rounded-full bg-neutral-800 border border-neutral-700 p-2" />
+                            <div className="h-10 absolute start-3 md:start-3 w-10 rounded-full bg-black flex items-center justify-center">
+                                <motion.div
+                                    className="h-4 w-4 rounded-full border p-2"
+                                    style={{
+                                        backgroundColor: useTransform(
+                                            scrollYProgress,
+                                            [index / data.length, (index + 0.5) / data.length],
+                                            ["rgb(38, 38, 38)", "rgb(147, 51, 234)"]
+                                        ),
+                                        borderColor: useTransform(
+                                            scrollYProgress,
+                                            [index / data.length, (index + 0.5) / data.length],
+                                            ["rgb(64, 64, 64)", "rgb(147, 51, 234)"]
+                                        )
+                                    }}
+                                />
                             </div>
-                            <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-medium text-neutral-500 dark:text-neutral-500 ">
-                                {item.title}
+                            <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-medium text-neutral-500 dark:text-neutral-500">
+                                <motion.span
+                                    style={{
+                                        color: useTransform(
+                                            scrollYProgress,
+                                            [index / data.length, (index + 0.5) / data.length],
+                                            ["rgb(115, 115, 115)", "rgb(255, 255, 255)"]
+                                        )
+                                    }}
+                                >
+                                    {item.title}
+                                </motion.span>
                             </h3>
                         </div>
 
                         <div className="relative ps-20 pe-4 md:ps-4 w-full">
 
                             <h3 className="md:hidden block text-2xl mb-4 text-left rtl:text-right font-medium text-neutral-500 dark:text-neutral-500">
-                                {item.title}
+                                <motion.span
+                                    style={{
+                                        color: useTransform(
+                                            scrollYProgress,
+                                            [index / data.length, (index + 0.5) / data.length],
+                                            ["rgb(115, 115, 115)", "rgb(255, 255, 255)"]
+                                        )
+                                    }}
+                                >
+                                    {item.title}
+                                </motion.span>
                             </h3>
                             {item.content}{" "}
 

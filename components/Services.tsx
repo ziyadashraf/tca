@@ -25,7 +25,7 @@ const Services = (ServiceProps: ServicesProps) => {
         }`}
     >
       <div className="w-full md:w-2/3 mt-8 md:mt-0">
-        <div className="flex flex-col justify-between items-center lg:items-start mb-8 md:mb-14">
+        <div className="flex flex-col justify-between items-start lg:items-start mb-8 md:mb-14">
           <h6
             ref={titleRef as any}
             className={`text-2xl md:text-4xl font-medium mb-4 md:mb-6 uppercase text-center transition-opacity duration-1000 ${isTitleInView ? 'fade-in' : 'opacity-0'
@@ -41,7 +41,7 @@ const Services = (ServiceProps: ServicesProps) => {
             {ServiceProps.description}
           </p>
         </div>
-        <div className="flex justify-center md:justify-start w-full">
+        <div className="flex justify-start md:justify-start w-full">
           <Link
             href={ServiceProps.link}
             className="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

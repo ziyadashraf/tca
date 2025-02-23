@@ -1,5 +1,5 @@
 import { Timeline } from '../ui/timeline'
-
+//on arrival change to purple
 const Journey = () => {
     const data = [
         {
