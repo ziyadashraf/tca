@@ -108,32 +108,32 @@ export default function ServicesPage() {
 
             {/* Updated Carousel Modal */}
             {isCarouselOpen && selectedPost && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                    <div className="bg-white p-4 rounded-lg max-w-4xl w-full">
+                <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+                    <div className="w-full h-full relative">
                         <button
                             onClick={() => {
                                 setIsCarouselOpen(false);
-                                setCurrentImageIndex(0); // Reset index when closing
+                                setCurrentImageIndex(0);
                             }}
-                            className="float-right text-gray-600 hover:text-gray-800"
+                            className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
                         >
                             Close
                         </button>
-                        <div className="mt-4 relative">
+                        <div className="w-full h-full relative">
                             <img
                                 src={selectedPost.images[currentImageIndex]}
                                 alt=""
-                                className="w-full h-auto"
+                                className="w-full h-full object-contain"
                             />
                             <button
                                 onClick={previousImage}
-                                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-r"
+                                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
                             >
                                 ←
                             </button>
                             <button
                                 onClick={nextImage}
-                                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-l"
+                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
                             >
                                 →
                             </button>
