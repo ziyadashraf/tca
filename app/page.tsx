@@ -1,13 +1,11 @@
 import Gradient from "@/components/Gradient";
-import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Partners from "@/components/Partners";
 import Stats from "@/components/Stats";
 import Form from "@/components/Form";
-import { fetchServicesData } from "@/utils/helpers";
-import { cookies } from "next/headers";
-import { translateObjectValues } from "@/utils/translate";
 import HeroSuggested from "@/components/HeroSuggested";
+
+import { fetchServicesData } from "@/utils/helpers";
 
 const backUpServices = [
   {
@@ -73,12 +71,7 @@ const backUpServices = [
 ];
 
 export default async function Home() {
-  const { rawServices } = await fetchServicesData();
-
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
-
-  const services = await translateObjectValues(rawServices, lang);
+  const { services } = await fetchServicesData();
 
   return (
     <>

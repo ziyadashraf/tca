@@ -1,17 +1,24 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import Header from "./Header/Header";
 import Footer from "./Footer";
-import { fetchHeaderData, fetchServicesData } from "@/utils/helpers";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const AppWrapper = async ({ children }: { children: ReactNode }) => {
-  const { products } = await fetchHeaderData();
+const queryClient = new QueryClient();
 
+const AppWrapper = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
-      <Header services={products} />
+    <QueryClientProvider client={queryClient}>
+      <div className="hidden">
+        list-disc list-decimal list-none text-left rtl:text-right text-center
+        text-right
+      </div>
+
+      <Header />
       {children}
       <Footer />
-    </div>
+    </QueryClientProvider>
   );
 };
 

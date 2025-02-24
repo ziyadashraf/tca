@@ -23,9 +23,18 @@ import AnimationsIcon from "@/public/3danimation.svg";
 import MotionIcon from "@/public/motiongraphics.svg";
 import EventsIcon from "@/public/events.svg";
 import WebDevIcon from "@/public/webdevelopment.svg";
-import { getApiPath, getLanguage, switchLanguage } from "@/utils/helpers";
+import Cookies from "js-cookie";
+
+import {
+  fetchHeaderData,
+  getApiPath,
+  getLanguage,
+  switchLanguage,
+  t,
+} from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const products = [
   {
@@ -80,11 +89,18 @@ const products = [
   },
 ];
 
-export default function Example({ services }: { services: any }) {
+export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const router = useRouter();
+
+  const lang = Cookies.get("lang");
+
+  const { data } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchHeaderData,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -105,8 +121,9 @@ export default function Example({ services }: { services: any }) {
 
   return (
     <header
-      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
-        }`}
+      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <nav
         aria-label="Global"
@@ -144,9 +161,9 @@ export default function Example({ services }: { services: any }) {
 
             <div className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out">
               <div className="p-4">
-                {services.map((item: any) => (
+                {data?.products.map((item: any, i: number) => (
                   <div
-                    key={item.name}
+                    key={i}
                     className="group relative flex gap-x-6 p-4 text-sm leading-6 hover:bg-gray-900"
                   >
                     <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center">
@@ -161,11 +178,11 @@ export default function Example({ services }: { services: any }) {
                         href={item.href}
                         className="block font-medium text-gray-100"
                       >
-                        {item.name}
+                        {t(item.name, lang)}
                         <span className="absolute inset-0" />
                       </a>
                       <p className="mt-1 text-gray-400 line-clamp-2">
-                        {item.description}
+                        {t(item.description, lang)}
                       </p>
                     </div>
                   </div>
@@ -228,19 +245,21 @@ export default function Example({ services }: { services: any }) {
               <div className="p-2">
                 <button
                   onClick={() => handleSwitchLanguage("en")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "en"
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
+                    getLanguage() === "en"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                  }`}
                 >
                   English
                 </button>
                 <button
                   onClick={() => handleSwitchLanguage("ar")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "ar"
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
+                    getLanguage() === "ar"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                  }`}
                 >
                   عربي
                 </button>
@@ -317,20 +336,22 @@ export default function Example({ services }: { services: any }) {
                 <div className="space-y-1">
                   <button
                     onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "en"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                      }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
+                      getLanguage() === "en"
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-100 hover:bg-gray-900"
+                    }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     English
                   </button>
                   <button
                     onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "ar"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                      }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
+                      getLanguage() === "ar"
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-100 hover:bg-gray-900"
+                    }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     عربي

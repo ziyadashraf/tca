@@ -32,12 +32,15 @@ export default async function RootLayout({
 
   return (
     <html
+      suppressHydrationWarning
+      suppressContentEditableWarning
       lang={language}
       dir={language === "ar" ? "rtl" : "ltr"}
       className="bg-black"
     >
       <body
         suppressHydrationWarning
+        suppressContentEditableWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppWrapper>{children}</AppWrapper>

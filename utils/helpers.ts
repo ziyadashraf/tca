@@ -1,5 +1,9 @@
 import Cookies from "js-cookie";
 
+export const t = (obj: { en: string; ar: string }, lang: string = "en") => {
+  return lang === "en" ? obj?.en : obj?.ar;
+};
+
 export const switchLanguage = (lang: "en" | "ar") => {
   Cookies.set("lang", lang, { expires: 365, path: "/" });
 };
@@ -10,6 +14,23 @@ export const getLanguage = (): "en" | "ar" =>
 export const API_URL = "http://localhost:3001";
 
 export const getApiPath = (path: string) => `${API_URL}${path}`;
+
+///////////////////////////////////////////////////////////////
+
+export const fetchNewsData = async () => {
+  const res = await fetch(getApiPath("/api/news"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+
+  const news = data?.docs || [];
+
+  return { news };
+};
 
 export const fetchHomeData = async () => {
   const res = await fetch(
@@ -26,12 +47,13 @@ export const fetchHomeData = async () => {
 
   const data = await res.json();
 
-  const rawLanding = data.landing;
-  const rawPartners = data.partners;
-  const rawServices = data.services;
-  const rawStats = data.stats;
+  const landing = data.landing;
+  const partners = data.partners;
+  const services = data.services;
+  const stats = data.stats;
+  const about = data.about;
 
-  return { rawLanding, rawPartners, rawServices, rawStats };
+  return { landing, partners, services, stats, about };
 };
 
 export const fetchServicesData = async () => {
@@ -47,9 +69,9 @@ export const fetchServicesData = async () => {
 
   const data = await res.json();
 
-  const rawServices = data?.docs || [];
+  const services = data?.docs || [];
 
-  return { rawServices };
+  return { services };
 };
 
 export const fetchHeaderData = async () => {

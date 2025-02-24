@@ -1,15 +1,14 @@
-import { fetchHomeData } from "@/utils/helpers";
-import { translateObjectValues } from "@/utils/translate";
-import { cookies } from "next/headers";
 import React from "react";
 import TheLine from "./TheLine";
+
+import { fetchHomeData, t } from "@/utils/helpers";
+import { cookies } from "next/headers";
+
 const Gradient = async () => {
-  const { rawServices } = await fetchHomeData();
+  const { services } = await fetchHomeData();
 
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
-
-  const services = await translateObjectValues(rawServices, lang);
 
   return (
     <div
@@ -22,15 +21,16 @@ const Gradient = async () => {
                         radial-gradient(circle at 48.9013671875% 49.521484375%, #FFFFFF 0%, 100%, rgba(255, 255, 255, 0) 100%)`,
       }}
     >
-      <div className='relative'>
-        <TheLine mode={'white'} size='1/4' />
-        <div className='ps-6'>
+      <div className="relative">
+        <TheLine mode={"white"} size="1/4" />
+        <div className="ps-6">
           <h6 className="text-black text-lg sm:text-xl font-light mb-4 sm:mb-8 uppercase">
-            {services?.title || "Our Services"}
+            {t(services?.title, lang) || "Our Services"}
           </h6>
 
           <p className="text-black text-xl sm:text-2xl md:text-3xl font-medium w-full sm:w-2/3 md:w-2/3">
-            {services?.description || "We Offer a Wide Range of Creative Solutions"}
+            {t(services?.description, lang) ||
+              "We Offer a Wide Range of Creative Solutions"}
           </p>
         </div>
       </div>

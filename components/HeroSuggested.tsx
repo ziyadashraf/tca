@@ -1,19 +1,14 @@
 import hero from "@/public/images/Heros.png";
-
-import { fetchHomeData, getApiPath, getLanguage } from "@/utils/helpers";
-import { translateObjectValues, translateText } from "@/utils/translate";
-import { cookies } from "next/headers";
-import Link from "next/link";
 import Button from "./Button";
-// import Image from "next/image";
+
+import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
+import { cookies } from "next/headers";
 
 export default async function HeroSuggested() {
-  const { rawLanding } = await fetchHomeData();
+  const { landing } = await fetchHomeData();
 
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
-
-  const landing = await translateObjectValues(rawLanding, lang);
 
   return (
     <div className="bg-white">
@@ -36,7 +31,7 @@ export default async function HeroSuggested() {
             <div className="relative px-6 py-12 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                 <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl fade-in">
-                  {landing?.heroText || (
+                  {t(landing?.heroText, lang) || (
                     <>
                       WELCOME TO
                       <br />
@@ -45,7 +40,7 @@ export default async function HeroSuggested() {
                   )}
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify">
-                  {landing?.subText ||
+                  {t(landing?.subText, lang) ||
                     "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                 </p>
                 <div className="mt-10 flex items-center gap-x-6">
