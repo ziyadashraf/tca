@@ -55,7 +55,7 @@ export default function Jobs() {
                         </div>
 
                         <div className="mt-4 flex flex-col items-start justify-between">
-                            <p className="text-sm text-gray-200 mb-14">
+                            <p className="text-sm text-gray-200 mb-14 text-justify">
                                 {action.description}
                             </p>
                             <Link
@@ -71,7 +71,7 @@ export default function Jobs() {
             </div>
             <div className="relative border border-white bg-white p-6 w-full" >
                 <div className="flex flex-col space-y-2 mb-8">
-                    <h3 className="text-3xl font-normal text-black">
+                    <h3 className="text-3xl font-normal text-black text-justify">
                         Ready to embark on a new creative journey with us?<br /> Send us your CV and let's explore the possibilities together.</h3>
                 </div>
 

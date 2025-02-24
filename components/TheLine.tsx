@@ -1,13 +1,20 @@
-import React from 'react'
+'use client'
+import { motion } from 'framer-motion';
 
-const TheLine = ({ mode, size }: { mode: string, size: string }) => {
+const TheLine = ({ mode, size }: { mode: string; size: string }) => {
     return (
-        <div className=''>
-            <div className={`absolute left-0 w-[1.5px] h-full ${mode === 'dark' ? 'bg-white' : 'bg-black'}`}></div>
+        <div className='w-[3px] h-full'>
+            <div className={`absolute left-0 w-[1.5px] rtl:left-auto rtl:right-0 h-full ${mode === 'dark' ? 'bg-white' : 'bg-black'}`}></div>
             {/* Shorter vertical line (1/4 height) */}
-            <div className={`absolute left-[1.5px] top-[15%] w-[2px] h-${size} ${mode === 'dark' ? 'bg-white' : 'bg-black'}`}></div>
+            <motion.div
+                initial={{ top: "100%" }}
+                whileInView={{ top: "15%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className={`absolute left-[1.5px] w-[2px] rtl:left-auto rtl:right-[1.5px] h-1/4 ${mode === 'dark' ? 'bg-white' : 'bg-black'}`}
+            ></motion.div>
         </div>
     )
 }
 
-export default TheLine
+export default TheLine;

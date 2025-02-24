@@ -129,30 +129,27 @@ export default function Example({ services }: { services: any }) {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-100">
+          <a href="/" className="text-sm font-medium leading-6 text-gray-100">
             Home
           </a>
 
-          <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-100">
+          <div className="group relative hover:cursor-pointer">
+            <div className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
               Services
               <ChevronDownIcon
                 aria-hidden="true"
-                className="h-5 w-5 flex-none text-gray-500"
+                className="h-5 w-5 flex-none text-gray-500 transition-transform duration-200 group-hover:rotate-180"
               />
-            </PopoverButton>
+            </div>
 
-            <PopoverPanel
-              transition
-              className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-            >
+            <div className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out">
               <div className="p-4">
                 {services.map((item: any) => (
                   <div
                     key={item.name}
-                    className="group relative flex gap-x-6  p-4 text-sm leading-6 hover:bg-gray-900"
+                    className="group relative flex gap-x-6 p-4 text-sm leading-6 hover:bg-gray-900"
                   >
-                    <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center   ">
+                    <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center">
                       <img
                         src={getApiPath(item.image.url)}
                         aria-hidden="true"
@@ -162,7 +159,7 @@ export default function Example({ services }: { services: any }) {
                     <div className="flex-auto">
                       <a
                         href={item.href}
-                        className="block font-semibold text-gray-100"
+                        className="block font-medium text-gray-100"
                       >
                         {item.name}
                         <span className="absolute inset-0" />
@@ -174,25 +171,25 @@ export default function Example({ services }: { services: any }) {
                   </div>
                 ))}
               </div>
-            </PopoverPanel>
-          </Popover>
+            </div>
+          </div>
 
           <a
             href="/about"
-            className="text-sm font-semibold leading-6 text-gray-100"
+            className="text-sm font-medium leading-6 text-gray-100"
           >
             About
           </a>
 
           <a
             href="/contact"
-            className="text-sm font-semibold leading-6 text-gray-100"
+            className="text-sm font-medium leading-6 text-gray-100"
           >
             Contact
           </a>
 
           {/* <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-100">
+            <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
               Company
               <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-500" />
             </PopoverButton>
@@ -203,7 +200,7 @@ export default function Example({ services }: { services: any }) {
             >
               {company.map((item) => (
                 <div key={item.name} className="relative  p-4 hover:bg-gray-700">
-                  <a href={item.href} className="block text-sm font-semibold leading-6 text-gray-100">
+                  <a href={item.href} className="block text-sm font-medium leading-6 text-gray-100">
                     {item.name}
                     <span className="absolute inset-0" />
                   </a>
@@ -215,7 +212,7 @@ export default function Example({ services }: { services: any }) {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-100">
+            <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
               <GlobeAltIcon className="h-5 w-5" />
               {getLanguage() === "en" ? "English" : "عربي"}
               <ChevronDownIcon
@@ -285,7 +282,7 @@ export default function Example({ services }: { services: any }) {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="group -mx-3 flex items-center gap-x-6 p-3 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900"
+                      className="group -mx-3 flex items-center gap-x-6 p-3 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center">
                         <item.icon
@@ -300,19 +297,19 @@ export default function Example({ services }: { services: any }) {
                 <div className="space-y-2 py-6">
                   <a
                     href="/"
-                    className="-mx-3 block px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900"
+                    className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     Home
                   </a>
                   <a
                     href="/about"
-                    className="-mx-3 block px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900"
+                    className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     About
                   </a>
                   <a
                     href="/contact"
-                    className="-mx-3 block px-3 py-2 text-base font-semibold leading-7 text-gray-100 hover:bg-gray-900"
+                    className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     Contact
                   </a>
@@ -320,7 +317,7 @@ export default function Example({ services }: { services: any }) {
                 <div className="space-y-1">
                   <button
                     onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${getLanguage() === "en"
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "en"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                       }`}
@@ -330,7 +327,7 @@ export default function Example({ services }: { services: any }) {
                   </button>
                   <button
                     onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-semibold leading-7 ${getLanguage() === "ar"
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "ar"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                       }`}

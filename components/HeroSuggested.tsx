@@ -4,7 +4,8 @@ import { fetchHomeData, getApiPath, getLanguage } from "@/utils/helpers";
 import { translateObjectValues, translateText } from "@/utils/translate";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import Image from "next/image";
+import Button from "./Button";
+// import Image from "next/image";
 
 export default async function HeroSuggested() {
   const { rawLanding } = await fetchHomeData();
@@ -43,23 +44,21 @@ export default async function HeroSuggested() {
                     </>
                   )}
                 </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600 fade-in">
+                <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify">
                   {landing?.subText ||
                     "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                 </p>
                 <div className="mt-10 flex items-center gap-x-6">
-                  <Link
-                    href="#"
-                    className="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Get started
-                  </Link>
-                  <Link
-                    href="#"
-                    className="text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Learn more <span aria-hidden="true">→</span>
-                  </Link>
+                  <Button
+                    style="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    href="#contact-form"
+                    children="Contact Us"
+                  />
+                  <Button
+                    style="text-sm font-semibold leading-6 text-gray-900"
+                    href="/about"
+                    children="Learn more →"
+                  />
                 </div>
               </div>
             </div>
