@@ -52,8 +52,9 @@ export const fetchHomeData = async () => {
   const services = data.services;
   const stats = data.stats;
   const about = data.about;
+  const contact = data.contact;
 
-  return { landing, partners, services, stats, about };
+  return { landing, partners, services, stats, about, contact };
 };
 
 export const fetchServicesData = async () => {
