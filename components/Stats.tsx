@@ -1,7 +1,7 @@
 import { fetchHomeData, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import React from "react";
-
+import HorizontalLine from "./HorizontalLine";
 const Stats = async () => {
   const statsData = [
     { number: "50", description: "Projects Completed" },
@@ -22,12 +22,13 @@ const Stats = async () => {
           {t(stats.title, lang) || "TCA in Numbers"}
         </h6>
 
-        <div className="flex flex-row justify-between items-start flex-wrap">
+        <div className="flex flex-row flex-wrap justify-between items-start gap-8">
           {/* @ts-ignore */}
           {(stats.statistics || statsData).map((stat, index) => (
-            <div key={index} className="text-black w-1/2 text-lg mb-24">
+            <div key={index} className="text-black w-full md:w-[45%] text-lg mb-24 relative">
               <div className="text-5xl font-medium mb-4">{stat.number}+</div>
-              <p className="text-black text-lg">{t(stat.description, lang)}</p>
+              <p className="text-black text-lg mb-8">{t(stat.description, lang)}</p>
+              <HorizontalLine mode="" size="" />
             </div>
           ))}
         </div>
