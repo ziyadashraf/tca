@@ -14,8 +14,8 @@ interface ServicesProps {
 }
 
 const Services = (ServiceProps: ServicesProps) => {
-  const [titleRef, isTitleInView] = useInView({ threshold: 0.2 });
-  const [descRef, isDescInView] = useInView({ threshold: 0.2 });
+  const [titleRef, isTitleInView] = useInView<HTMLHeadingElement>({ threshold: 0.2 });
+  const [descRef, isDescInView] = useInView<HTMLParagraphElement>({ threshold: 0.2 });
 
   const lang = Cookies.get("lang");
 
@@ -23,27 +23,24 @@ const Services = (ServiceProps: ServicesProps) => {
     <div
       className={`lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 
         flex flex-col-reverse md:flex-row items-center justify-between gap-8
-        ${
-          ServiceProps.type === "white"
-            ? "bg-white md:flex-row"
-            : "bg-gray-100 md:flex-row-reverse"
+        ${ServiceProps.type === "white"
+          ? "bg-white md:flex-row"
+          : "bg-gray-100 md:flex-row-reverse"
         }`}
     >
       <div className="w-full md:w-2/3 mt-8 md:mt-0">
         <div className="flex flex-col justify-between items-start lg:items-start mb-8 md:mb-14">
           <h6
-            ref={titleRef as any}
-            className={`text-2xl md:text-4xl font-medium mb-4 md:mb-6 uppercase text-center transition-opacity duration-1000 ${
-              isTitleInView ? "fade-in" : "opacity-0"
-            }`}
+            ref={titleRef}
+            className={`text-2xl md:text-4xl font-medium mb-4 md:mb-6 uppercase text-center transition-opacity duration-1000 ${isTitleInView ? "fade-in" : "opacity-0"
+              }`}
           >
             {t(ServiceProps.service, lang)}
           </h6>
           <p
-            ref={descRef as any}
-            className={`text-sm md:text-md font-medium text-justify md:text-justify text-gray-600 transition-opacity duration-1000 delay-200 ${
-              isDescInView ? "fade-in" : "opacity-0"
-            }`}
+            ref={descRef}
+            className={`text-sm md:text-md font-medium text-justify md:text-justify text-gray-600 transition-opacity duration-1000 delay-200 ${isDescInView ? "fade-in" : "opacity-0"
+              }`}
           >
             {t(ServiceProps.description, lang)}
           </p>

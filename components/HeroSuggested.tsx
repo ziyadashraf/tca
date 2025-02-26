@@ -57,13 +57,15 @@ export default async function HeroSuggested() {
                       <Button
                         style="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         href="#contact-form"
-                        children="Contact Us"
-                      />
+                      >
+                        Contact Us
+                      </Button>
                       <Button
                         style="text-sm font-semibold leading-6 text-gray-900"
                         href="/about"
-                        children="Learn more →"
-                      />
+                      >
+                        Learn more →
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -100,13 +102,15 @@ export default async function HeroSuggested() {
                       <Button
                         style="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         href="#contact-form"
-                        children="Contact Us"
-                      />
+                      >
+                        Contact Us
+                      </Button>
                       <Button
                         style="text-sm font-semibold leading-6 text-gray-900"
                         href="/about"
-                        children="Learn more →"
-                      />
+                      >
+                        Learn more →
+                      </Button>
                     </div>
                   </div>
                 </div>

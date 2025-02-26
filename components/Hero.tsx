@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import HeroImage from '@/public/images/Heros.png'
 
@@ -8,7 +7,7 @@ import HeroImage from '@/public/images/Heros.png'
 
 
 export default function Hero() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
 
     return (
         <div className="bg-gray-900">
@@ -58,11 +57,11 @@ export default function Hero() {
                     />
                 </div>
                 <div className="bg-gradient-to-b from-transparent via-black/90 to-black min-h-[800px] p-64 pb-24 flex flex-col justify-end items-end">
-                    <h6 className='text-white font-normal text-2xl mb-4 text-justify'>At TCA, we're all about changing how businesses see design and creativity,
+                    <h6 className='text-white font-normal text-2xl mb-4 text-justify'>At TCA, we&apos;re all about changing how businesses see design and creativity,
                         We bring fresh ideas and one of a kind solutions to every project, pushing the boundaries of what design can do.
                     </h6>
                     <p className='text-white text-lg text-justify'>
-                        Our team of professional designers and creative experts are dedicated to delivering exceptional results that exceed our clients'
+                        Our team of professional designers and creative experts are dedicated to delivering exceptional results that exceed our clients&apos;
                         expectations. We are committed to pushing boundaries and creating memorable experiences through our work.
                     </p>
                 </div>

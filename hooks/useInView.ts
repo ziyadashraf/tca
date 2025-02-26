@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useInView = (options = {}) => {
+export const useInView = <T extends HTMLElement>(options = {}) => {
     const [isInView, setIsInView] = useState(false);
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef<T | null>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
@@ -20,5 +20,5 @@ export const useInView = (options = {}) => {
         };
     }, [options]);
 
-    return [ref, isInView];
+    return [ref, isInView] as const;
 }; 

@@ -22,7 +22,7 @@ const Gradient = async () => {
       }}
     >
       <div className="relative">
-        <TheLine mode={"white"} size="1/4" />
+        <TheLine mode={"white"} />
         <div className="ps-6">
           <h6 className="text-black text-lg sm:text-xl font-light mb-4 sm:mb-8 uppercase">
             {t(services?.title, lang) || "Our Services"}

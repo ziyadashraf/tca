@@ -17,7 +17,7 @@ const Form = () => {
             <div className='flex flex-col md:flex-row justify-around items-start bg-black gap-8 sm:gap-16 md:gap-16 py-8 md:py-12 px-4 w-full'>
                 <div className='w-full md:w-1/3 flex flex-col items-start justify-start h-full relative'>
                     <div className='hidden md:block'>
-                        <TheLine mode={'dark'} size='' />
+                        <TheLine mode={'dark'} />
                     </div>
 
                     <div className='md:ps-6'>

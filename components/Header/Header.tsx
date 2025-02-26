@@ -35,13 +35,30 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import Link from 'next/link';
+
+interface IconProps {
+  className?: string;
+  'aria-hidden'?: boolean;
+  width?: number;
+  height?: number;
+}
+
+interface Product {
+  name: { en: string; ar: string };
+  description: { en: string; ar: string };
+  href: string;
+  image: {
+    url: string;
+  };
+}
 
 const products = [
   {
     name: "Branding",
     description: "Establish a strong and impactful brand identity",
     href: "/services/branding",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={BrandingIcon} alt="Branding" {...props} />
     ),
   },
@@ -50,7 +67,7 @@ const products = [
     description:
       "Crafting creative concepts and content creation for diverse media platforms",
     href: "/services/campaigns",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={CampaignsIcon} alt="Campaigns" {...props} />
     ),
   },
@@ -58,7 +75,7 @@ const products = [
     name: "3D Animations",
     description: "Immerse your audience in compelling 3D animated visuals",
     href: "/services/3d-animations",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={AnimationsIcon} alt="3D Animations" {...props} />
     ),
   },
@@ -67,7 +84,7 @@ const products = [
     description:
       "Bringing ideas to life through captivating visual storytelling",
     href: "/services/motion-graphics",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={MotionIcon} alt="Motion Graphics" {...props} />
     ),
   },
@@ -75,7 +92,7 @@ const products = [
     name: "Events Design",
     description: "Creative solutions for your events.",
     href: "/services/events-design",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={EventsIcon} alt="Events Design" {...props} />
     ),
   },
@@ -83,7 +100,7 @@ const products = [
     name: "Web Development",
     description: "Custom websites that prioritize UX and visual appeal",
     href: "/services/web-development",
-    icon: (props: any) => (
+    icon: (props: IconProps) => (
       <Image src={WebDevIcon} alt="Web Development" {...props} />
     ),
   },
@@ -121,19 +138,18 @@ export default function Example() {
 
   return (
     <header
-      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">TCA</span>
             <Image src={Logo} alt="TCA logo" width={100} height={100} />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -146,9 +162,9 @@ export default function Example() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="/" className="text-sm font-medium leading-6 text-gray-100">
+          <Link href="/" className="text-sm font-medium leading-6 text-gray-100">
             Home
-          </a>
+          </Link>
 
           <div className="group relative hover:cursor-pointer">
             <div className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
@@ -174,13 +190,13 @@ export default function Example() {
                       />
                     </div>
                     <div className="flex-auto">
-                      <a
+                      <Link
                         href={item.href}
                         className="block font-medium text-gray-100"
                       >
                         {t(item.name, lang)}
                         <span className="absolute inset-0" />
-                      </a>
+                      </Link>
                       <p className="mt-1 text-gray-400 line-clamp-2">
                         {t(item.description, lang)}
                       </p>
@@ -191,19 +207,19 @@ export default function Example() {
             </div>
           </div>
 
-          <a
+          <Link
             href="/about"
             className="text-sm font-medium leading-6 text-gray-100"
           >
             About
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/contact"
             className="text-sm font-medium leading-6 text-gray-100"
           >
             Contact
-          </a>
+          </Link>
 
           {/* <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
@@ -217,10 +233,10 @@ export default function Example() {
             >
               {company.map((item) => (
                 <div key={item.name} className="relative  p-4 hover:bg-gray-700">
-                  <a href={item.href} className="block text-sm font-medium leading-6 text-gray-100">
+                              <Link href={item.href} className="block text-sm font-medium leading-6 text-gray-100">
                     {item.name}
                     <span className="absolute inset-0" />
-                  </a>
+                  </Link>
                   <p className="mt-1 text-sm leading-6 text-gray-400">{item.description}</p>
                 </div>
               ))}
@@ -245,21 +261,19 @@ export default function Example() {
               <div className="p-2">
                 <button
                   onClick={() => handleSwitchLanguage("en")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    getLanguage() === "en"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "en"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-100 hover:bg-gray-900"
+                    }`}
                 >
                   English
                 </button>
                 <button
                   onClick={() => handleSwitchLanguage("ar")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    getLanguage() === "ar"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "ar"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-100 hover:bg-gray-900"
+                    }`}
                 >
                   عربي
                 </button>
@@ -277,14 +291,14 @@ export default function Example() {
         <DialogPanel className="fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto bg-black sm:max-w-sm sm:ring-1 sm:ring-gray-700">
           <div className="p-6">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              {/* <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img
                   alt=""
                   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                   className="h-8 w-auto"
                 />
-              </a>
+              </a> */}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -298,60 +312,58 @@ export default function Example() {
               <div className="-my-6 divide-y divide-gray-700">
                 <div className="space-y-2 py-6">
                   {products.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       className="group -mx-3 flex items-center gap-x-6 p-3 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center">
                         <item.icon
-                          aria-hidden="true"
+                          aria-hidden={true}
                           className="h-6 w-6 text-gray-400 group-hover:text-white"
                         />
                       </div>
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
                 <div className="space-y-2 py-6">
-                  <a
+                  <Link
                     href="/"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     Home
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/about"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     About
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/contact"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </div>
                 <div className="space-y-1">
                   <button
                     onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
-                      getLanguage() === "en"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "en"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     English
                   </button>
                   <button
                     onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
-                      getLanguage() === "ar"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "ar"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     عربي

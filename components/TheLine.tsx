@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion';
 
-const TheLine = ({ mode, size }: { mode: string; size: string }) => {
+const TheLine = ({ mode }: { mode: string}) => {
     return (
         <div className='w-[3px] h-full'>
             <div className={`absolute left-0 w-[1.5px] rtl:left-auto rtl:right-0 h-full ${mode === 'dark' ? 'bg-white' : 'bg-black'}`}></div>
