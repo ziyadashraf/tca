@@ -353,7 +353,8 @@ export default function Header() {
                 </div>
                 <div className="space-y-1">
                   <button
-                    onClick={() => handleSwitchLanguage("en")}
+                    onClick={() => handleSwitchLanguage("en")
+                    }
                     className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "en"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
