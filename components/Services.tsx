@@ -40,7 +40,7 @@ const Services = (ServiceProps: ServicesProps) => {
           </h6>
           <p
             ref={descRef}
-            className={`text-sm md:text-md font-medium text-justify md:text-justify text-gray-600 transition-opacity duration-1000 delay-200 ${isDescInView ? "fade-in" : "opacity-0"
+            className={`text-md font-medium text-justify md:text-justify text-gray-600 transition-opacity duration-1000 delay-200 ${isDescInView ? "fade-in" : "opacity-0"
               }`}
           >
             {t(ServiceProps.description, lang)}
