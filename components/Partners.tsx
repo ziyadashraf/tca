@@ -34,7 +34,7 @@ const Partners = async () => {
             key={i}
             src={getApiPath(img.image.url)}
             alt={img.image.alt}
-            className=" "
+            className=" object-cover"
             width={160}
             height={160}
           />

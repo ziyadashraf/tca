@@ -50,7 +50,7 @@ export default async function HeroSuggested() {
                         </>
                       )}
                     </h1>
-                    <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify sm:text-black">
+                    <p className="mt-6 text-lg leading-8 lg:text-gray-600 fade-in text-justify text-black">
                       {t(landing?.subText, lang) ||
                         "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                     </p>
