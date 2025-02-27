@@ -31,8 +31,7 @@ import Cookies from "js-cookie";
 import {
   fetchHeaderData,
   getApiPath,
-  getLanguage,
-  switchLanguage,
+
   t,
 } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
@@ -105,9 +104,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [lang, setLang] = useState("en");
+
   const router = useRouter();
 
-  const lang = Cookies.get("lang");
+  useEffect(() => {
+    const cookieLang = Cookies.get("lang") || "en";
+    setLang(cookieLang);
+  }, []);
 
   const { data } = useQuery({
     queryKey: ["products"],
@@ -125,9 +129,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
-  const handleSwitchLanguage = (lang: "en" | "ar") => {
-    switchLanguage(lang);
-
+  const handleSwitchLanguage = (newLang: "en" | "ar") => {
+    Cookies.set("lang", newLang);
+    setLang(newLang);
     router.refresh();
   };
 
@@ -250,7 +254,7 @@ export default function Header() {
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
               <GlobeAltIcon className="h-5 w-5" />
-              {getLanguage() === "en" ? "English" : "عربي"}
+              {lang === "en" ? "English" : "عربي"}
               <ChevronDownIcon
                 aria-hidden="true"
                 className="h-5 w-5 flex-none text-gray-500"
@@ -264,7 +268,7 @@ export default function Header() {
               <div className="p-2">
                 <button
                   onClick={() => handleSwitchLanguage("en")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "en"
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "en"
                     ? "bg-gray-900 text-white"
                     : "text-gray-100 hover:bg-gray-900"
                     }`}
@@ -273,7 +277,7 @@ export default function Header() {
                 </button>
                 <button
                   onClick={() => handleSwitchLanguage("ar")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${getLanguage() === "ar"
+                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "ar"
                     ? "bg-gray-900 text-white"
                     : "text-gray-100 hover:bg-gray-900"
                     }`}
@@ -350,7 +354,7 @@ export default function Header() {
                 <div className="space-y-1">
                   <button
                     onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "en"
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "en"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                       }`}
@@ -360,7 +364,7 @@ export default function Header() {
                   </button>
                   <button
                     onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${getLanguage() === "ar"
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "ar"
                       ? "bg-gray-900 text-white"
                       : "text-gray-100 hover:bg-gray-900"
                       }`}

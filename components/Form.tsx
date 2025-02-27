@@ -1,32 +1,10 @@
+
 import img from "@/public/images/FormPic.png"
 import TheLine from './TheLine'
 import Cookies from "js-cookie"
-import emailjs from 'emailjs-com'
 
 const Form = () => {
     const lang = Cookies.get("lang") || "en"
-
-    const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        const form = e.currentTarget
-        const formData = new FormData(form)
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            description: formData.get('description'),
-        }
-
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', data, 'YOUR_USER_ID')
-            .then((response) => {
-                console.log('Email sent successfully!', response.status, response.text)
-                form.reset()
-            })
-            .catch((error) => {
-                console.error('Failed to send email:', error)
-            })
-    }
 
     return (
         <div
@@ -64,13 +42,12 @@ const Form = () => {
 
 
                 </div>
-                <form className='w-full md:w-1/2 flex flex-col gap-8 items-between justify-between h-full' onSubmit={sendEmail}>
+                <form className='w-full md:w-1/2 flex flex-col gap-8 items-between justify-between h-full'>
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col ">
                             <label className="text-white text-sm">{lang === "ar" ? "الاسم" : "Name"}</label>
                             <input
                                 type="text"
-                                name="name"
                                 className="bg-transparent text-white border-b border-white p-2 outline-none placeholder:text-gray-400 focus:border-b-2"
                             />
                         </div>
@@ -78,7 +55,6 @@ const Form = () => {
                             <label className="text-white text-sm">{lang === "ar" ? "البريد الإلكتروني" : "Email"}</label>
                             <input
                                 type="email"
-                                name="email"
                                 className="bg-transparent text-white border-b border-white p-2 outline-none placeholder:text-gray-400 focus:border-b-2"
                             />
                         </div>
@@ -86,14 +62,12 @@ const Form = () => {
                             <label className="text-white text-sm">{lang === "ar" ? "الهاتف" : "Phone"}</label>
                             <input
                                 type="tel"
-                                name="phone"
                                 className="bg-transparent text-white border-b border-white p-2 outline-none placeholder:text-gray-400 focus:border-b-2"
                             />
                         </div>
                         <div className="flex flex-col gap-20">
                             <label className="text-white text-sm">{lang === "ar" ? "الوصف" : "Description"}</label>
                             <textarea
-                                name="description"
                                 className="bg-transparent text-white border-b border-white p-2 outline-none placeholder:text-gray-400 focus:border-b-2 resize-none"
                             />
                         </div>
