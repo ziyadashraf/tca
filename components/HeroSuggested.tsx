@@ -12,7 +12,7 @@ export default async function HeroSuggested() {
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
 
   return (
-    <div className="bg-white">
+    <div className="bg-white ">
       <div className="relative">
         <div className="mx-auto max-w-7xl">
           {/* Mobile background image */}
@@ -84,7 +84,7 @@ export default async function HeroSuggested() {
                 >
                   <polygon points="0,0 90,0 50,100 0,100" />
                 </svg> */}
-                <div className="relative px-6 py-24 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
+                <div className="relative px-6 py-64 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                     <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
                       {t(landing?.heroText, lang) || (
