@@ -1,6 +1,6 @@
 import { fetchHomeData, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
-import React from "react";
+
 import HorizontalLine from "./HorizontalLine";
 
 // Add interface for stats data

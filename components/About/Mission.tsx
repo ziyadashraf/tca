@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Image from 'next/image'
 import mission from '@/public/images/FormPic.png'
 const Mission = () => {

@@ -1,6 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TimelineEntry {
     title: string;
@@ -51,12 +51,15 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                             </h3>
                         </div>
 
-                        <div className="relative pl-20 pr-4 md:pl-4 w-full text-white">
-                            <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-200 ">
+                        <div className="relative ps-20 pe-4 md:ps-4 w-full text-white">
+                            <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-200 rtl:text-right">
                                 {item.title}
                             </h3>
-                            {item.content}
+                            <div className="overflow-wrap break-words">
+                                {item.content}
+                            </div>
                         </div>
+
                     </div>
                 ))}
                 <div

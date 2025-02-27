@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Header from "./Header/Header";
 import Footer from "./Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

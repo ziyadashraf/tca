@@ -1,7 +1,7 @@
 "use client";
 
 import Cookies from "js-cookie";
-import React, { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import TheLine from "../TheLine";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNewsData, getApiPath, t } from "@/utils/helpers";
@@ -71,7 +71,7 @@ const News = () => {
 
   const news = useMemo(() => data?.news, [data]);
 
-  const lang = Cookies.get("lang");
+  const lang = Cookies.get("lang") || "en";
 
   useEffect(() => {
     // Add opacity-0 class after mount
@@ -102,9 +102,11 @@ const News = () => {
       <div className="relative">
         <TheLine mode={"white"} />
         <div className="mb-8 ps-6">
-          <p className="text-black text-lg font-light mb-4 uppercase">News</p>
+          <p className="text-black text-lg font-light mb-4 uppercase">
+            {lang === "ar" ? "أخبار" : "News"}
+          </p>
           <h6 className="text-black text-2xl font-medium mb-8">
-            The Cloud Agency In The Press
+            {lang === "ar" ? "وكالة السحابة في الصحافة" : "The Cloud Agency In The Press"}
           </h6>
         </div>
       </div>

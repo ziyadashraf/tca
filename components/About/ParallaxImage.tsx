@@ -1,4 +1,4 @@
-import React from 'react'
+
 import img from "@/public/images/FormPic.png"
 
 const ParallaxImage = () => {
@@ -13,7 +13,7 @@ const ParallaxImage = () => {
                 backgroundRepeat: 'no-repeat',
             }}
         >ParallaxImage
-        
+
         </div>
     )
 }

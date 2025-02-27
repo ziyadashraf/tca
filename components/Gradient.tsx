@@ -1,4 +1,4 @@
-import React from "react";
+
 import TheLine from "./TheLine";
 
 import { fetchHomeData, t } from "@/utils/helpers";
