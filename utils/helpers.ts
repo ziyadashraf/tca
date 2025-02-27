@@ -11,7 +11,7 @@ export const switchLanguage = (lang: "en" | "ar") => {
 export const getLanguage = (): "en" | "ar" =>
   Cookies.get("lang") as "en" | "ar";
 
-export const API_URL = "http://localhost:3001";
+export const API_URL = "https://tca-payload.vercel.app";
 
 export const getApiPath = (path: string) => `${API_URL}${path}`;
 
