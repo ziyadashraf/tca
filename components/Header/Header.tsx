@@ -149,11 +149,17 @@ export default function Header() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center  p-2.5 text-gray-100"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="-m-2.5 inline-flex items-center justify-center p-2.5 text-gray-100"
           >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+            <span className="sr-only">
+              {mobileMenuOpen ? "Close main menu" : "Open main menu"}
+            </span>
+            {mobileMenuOpen ? (
+              <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+            ) : (
+              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+            )}
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
@@ -279,25 +285,21 @@ export default function Header() {
       </nav>
       <Dialog
         open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 flex w-full flex-col justify-between overflow-y-auto bg-black sm:max-w-sm sm:ring-1 sm:ring-gray-700">
           <div className="p-6">
             <div className="flex items-center justify-between">
-              {/* <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  alt=""
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-8 w-auto"
-                />
-              </a> */}
+              <Link href="/" className="-m-1.5 p-1.5">
+                <span className="sr-only">TCA</span>
+                <Image src={Logo} alt="TCA logo" width={100} height={100} />
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5  p-2.5 text-gray-100"
+                className="-m-2.5 p-2.5 text-gray-100"
               >
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -311,32 +313,34 @@ export default function Header() {
                       key={i}
                       href={item.href}
                       className="group -mx-3 flex items-center gap-x-6 p-3 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center">
-                        {item.icon
-                        }
+                        {item.icon}
                       </div>
                       {t(item.name, lang)}
                     </Link>
-
                   ))}
                 </div>
                 <div className="space-y-2 py-6">
                   <Link
                     href="/"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Home
                   </Link>
                   <Link
                     href="/about"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     About
                   </Link>
                   <Link
                     href="/contact"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Contact
                   </Link>
