@@ -12,7 +12,7 @@ const Gradient = async () => {
 
   return (
     <div
-      className=" lg:px-64 lg:py-24 md:py-30 py-20 px-6 flex flex-col justify-center items-start"
+      className=" lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-col justify-center items-start"
       style={{
         background: `radial-gradient(circle at 62.916666666666664% 69.16666666666667%, #098BE1 0%, 20%, rgba(9, 139, 225, 0) 40%),
                         radial-gradient(circle at 6.503906249999999% 88.037109375%, rgba(253, 253, 24, 0.99) 0%, 25%, rgba(253, 253, 24, 0) 50%),
