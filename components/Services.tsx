@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getApiPath, t } from "@/utils/helpers";
 import { useInView } from "@/hooks/useInView";
 import Cookies from "js-cookie";
-
+import Image from "next/image";
 interface ServicesProps {
   service: { en: string; ar: string };
   description: { en: string; ar: string };
@@ -22,7 +22,7 @@ const Services = (ServiceProps: ServicesProps) => {
   return (
     <div
       className={`lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 
-        flex flex-col-reverse md:flex-row items-center justify-between gap-8
+        flex flex-col-reverse md:flex-row items-center justify-between gap-16
         ${ServiceProps.type === "white"
           ? "bg-white md:flex-row"
           : "bg-gray-100 md:flex-row-reverse"
@@ -46,19 +46,22 @@ const Services = (ServiceProps: ServicesProps) => {
           </p>
         </div>
         <div className="flex justify-start md:justify-start w-full">
+
           <Link
             href={ServiceProps.link}
             className="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Discover More
+            {lang === "ar" ? "اكتشف المزيد" : "Discover More"}
           </Link>
         </div>
       </div>
       <div className="flex flex-row items-end w-full md:w-auto">
-        <img
+        <Image
           src={getApiPath(ServiceProps?.image?.url) || ServiceProps.image.url}
           alt={t(ServiceProps.service, lang)}
           className="w-full h-auto"
+          width={250}
+          height={250}
         />
       </div>
     </div>

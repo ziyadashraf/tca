@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Welcome from "@/components/Welcome";
 import Section from "@/components/Section";
 import Jobs from "@/components/Contact/Jobs";
 import Form from "@/components/Form";
-import FormPic from "@/public/images/FormPic.png";
 import Cookies from "js-cookie";
 
 import { useQuery } from "@tanstack/react-query";

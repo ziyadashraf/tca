@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -17,12 +20,12 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Logo from "@/public/Logo.svg";
 
-import BrandingIcon from "@/public/Branding.svg";
-import CampaignsIcon from "@/public/Campaigns.svg";
-import AnimationsIcon from "@/public/3danimation.svg";
-import MotionIcon from "@/public/motiongraphics.svg";
-import EventsIcon from "@/public/events.svg";
-import WebDevIcon from "@/public/webdevelopment.svg";
+// import BrandingIcon from "@/public/Branding.svg";
+// import CampaignsIcon from "@/public/Campaigns.svg";
+// import AnimationsIcon from "@/public/3danimation.svg";
+// import MotionIcon from "@/public/motiongraphics.svg";
+// import EventsIcon from "@/public/events.svg";
+// import WebDevIcon from "@/public/webdevelopment.svg";
 import Cookies from "js-cookie";
 
 import {
@@ -37,76 +40,68 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Link from 'next/link';
 
-interface IconProps {
-  className?: string;
-  'aria-hidden'?: boolean;
-  width?: number;
-  height?: number;
-}
+// interface IconProps {
+//   className?: string;
+//   'aria-hidden'?: boolean;
+//   width?: number;
+//   height?: number;
+// }
 
-interface Product {
-  name: { en: string; ar: string };
-  description: { en: string; ar: string };
-  href: string;
-  image: {
-    url: string;
-  };
-}
 
-const products = [
-  {
-    name: "Branding",
-    description: "Establish a strong and impactful brand identity",
-    href: "/services/branding",
-    icon: (props: IconProps) => (
-      <Image src={BrandingIcon} alt="Branding" {...props} />
-    ),
-  },
-  {
-    name: "Campaigns",
-    description:
-      "Crafting creative concepts and content creation for diverse media platforms",
-    href: "/services/campaigns",
-    icon: (props: IconProps) => (
-      <Image src={CampaignsIcon} alt="Campaigns" {...props} />
-    ),
-  },
-  {
-    name: "3D Animations",
-    description: "Immerse your audience in compelling 3D animated visuals",
-    href: "/services/3d-animations",
-    icon: (props: IconProps) => (
-      <Image src={AnimationsIcon} alt="3D Animations" {...props} />
-    ),
-  },
-  {
-    name: "Motion Graphics",
-    description:
-      "Bringing ideas to life through captivating visual storytelling",
-    href: "/services/motion-graphics",
-    icon: (props: IconProps) => (
-      <Image src={MotionIcon} alt="Motion Graphics" {...props} />
-    ),
-  },
-  {
-    name: "Events Design",
-    description: "Creative solutions for your events.",
-    href: "/services/events-design",
-    icon: (props: IconProps) => (
-      <Image src={EventsIcon} alt="Events Design" {...props} />
-    ),
-  },
-  {
-    name: "Web Development",
-    description: "Custom websites that prioritize UX and visual appeal",
-    href: "/services/web-development",
-    icon: (props: IconProps) => (
-      <Image src={WebDevIcon} alt="Web Development" {...props} />
-    ),
-  },
-];
+// const products = [
+//   {
+//     name: "Branding",
+//     description: "Establish a strong and impactful brand identity",
+//     href: "/services/branding",
+//     icon: (props: IconProps) => (
+//       <Image src={BrandingIcon} alt="Branding" {...props} />
+//     ),
+//   },
+//   {
+//     name: "Campaigns",
+//     description:
+//       "Crafting creative concepts and content creation for diverse media platforms",
+//     href: "/services/campaigns",
+//     icon: (props: IconProps) => (
+//       <Image src={CampaignsIcon} alt="Campaigns" {...props} />
+//     ),
+//   },
+//   {
+//     name: "3D Animations",
+//     description: "Immerse your audience in compelling 3D animated visuals",
+//     href: "/services/3d-animations",
+//     icon: (props: IconProps) => (
+//       <Image src={AnimationsIcon} alt="3D Animations" {...props} />
+//     ),
+//   },
+//   {
+//     name: "Motion Graphics",
+//     description:
+//       "Bringing ideas to life through captivating visual storytelling",
+//     href: "/services/motion-graphics",
+//     icon: (props: IconProps) => (
+//       <Image src={MotionIcon} alt="Motion Graphics" {...props} />
+//     ),
+//   },
+//   {
+//     name: "Events Design",
+//     description: "Creative solutions for your events.",
+//     href: "/services/events-design",
+//     icon: (props: IconProps) => (
+//       <Image src={EventsIcon} alt="Events Design" {...props} />
+//     ),
+//   },
+//   {
+//     name: "Web Development",
+//     description: "Custom websites that prioritize UX and visual appeal",
+//     href: "/services/web-development",
+//     icon: (props: IconProps) => (
+//       <Image src={WebDevIcon} alt="Web Development" {...props} />
+//     ),
+//   },
+// ];
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -311,20 +306,19 @@ export default function Example() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-700">
                 <div className="space-y-2 py-6">
-                  {products.map((item) => (
+                  {data?.products.map((item: any, i: number) => (
                     <Link
-                      key={item.name}
+                      key={i}
                       href={item.href}
                       className="group -mx-3 flex items-center gap-x-6 p-3 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center">
-                        <item.icon
-                          aria-hidden={true}
-                          className="h-6 w-6 text-gray-400 group-hover:text-white"
-                        />
+                        {item.icon
+                        }
                       </div>
-                      {item.name}
+                      {t(item.name, lang)}
                     </Link>
+
                   ))}
                 </div>
                 <div className="space-y-2 py-6">

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import hero from "@/public/images/Heros.png";
 import Button from "./Button";
 
