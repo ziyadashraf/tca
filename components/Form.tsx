@@ -12,7 +12,7 @@ const Form = () => {
                 backgroundAttachment: 'fixed',
                 backgroundRepeat: 'no-repeat',
             }}
-            className='flex flex-row justify-around items-center px-4 md:px-16 lg:px-64 py-8 md:py-16 lg:py-32'
+            className='flex flex-row justify-around items-center px-4 lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 '
         >
             <div className='flex flex-col md:flex-row justify-around items-start bg-black gap-8 sm:gap-16 md:gap-16 py-8 md:py-12 px-4 w-full'>
                 <div className='w-full md:w-1/3 flex flex-col items-start justify-start h-full relative'>

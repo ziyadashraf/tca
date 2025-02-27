@@ -8,7 +8,7 @@ const Partners = async () => {
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
 
   return (
-    <div className="lg:px-64 py-24 md:py-16  px-6 flex flex-col gap-8 lg:gap-16 justify-between items-center bg-black lg:flex-row">
+    <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6  flex flex-col gap-8 lg:gap-16 justify-between items-center bg-black lg:flex-row">
       <div className="lg:w-1/2 w-full relative flex flex-row items-start justify-start gap-8">
         <TheLine mode={"dark"} />
 

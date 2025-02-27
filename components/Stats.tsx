@@ -28,7 +28,7 @@ const Stats = async () => {
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
 
   return (
-    <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white ">
+    <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white overflow-x-hidden">
       <div className="w-full">
         <h6 className="text-black text-2xl font-medium mb-12">
           {t(stats.title, lang) || "TCA in Numbers"}
