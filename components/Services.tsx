@@ -22,7 +22,8 @@ const Services = (ServiceProps: ServicesProps) => {
   return (
     <div
       className={`lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 
-        flex flex-col-reverse md:flex-row items-center justify-between gap-16
+        flex flex-col-reverse md:flex-row items-center justify-between gap-4
+        lg:gap-16
         ${ServiceProps.type === "white"
           ? "bg-white md:flex-row"
           : "bg-gray-100 md:flex-row-reverse"
@@ -32,7 +33,7 @@ const Services = (ServiceProps: ServicesProps) => {
         <div className="flex flex-col justify-between items-start lg:items-start mb-8 md:mb-14">
           <h6
             ref={titleRef}
-            className={`text-2xl md:text-4xl font-medium mb-4 md:mb-6 uppercase text-center transition-opacity duration-1000 ${isTitleInView ? "fade-in" : "opacity-0"
+            className={`text-2xl md:text-4xl font-medium mb-4 md:mb-6 uppercase text-left lg:text-center transition-opacity duration-1000 ${isTitleInView ? "fade-in" : "opacity-0"
               }`}
           >
             {t(ServiceProps.service, lang)}

@@ -20,7 +20,7 @@ export default async function HeroSuggested() {
             <img
               alt={landing?.heroImage?.alt || "Hero Image"}
               src={getApiPath(landing?.heroImage?.url) || hero.src}
-              className="h-full w-full object-cover opacity-20"
+              className="h-full w-full object-cover "
               width={1000}
               height={1000}
             />
@@ -80,7 +80,7 @@ export default async function HeroSuggested() {
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
                   aria-hidden="true"
-                  className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
+                  className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform  lg:block"
                 >
                   <polygon points="0,0 90,0 50,100 0,100" />
                 </svg>

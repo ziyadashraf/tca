@@ -38,8 +38,8 @@ export default function Hero() {
                             Welcome to<br />
                             The Cloud Agency
                         </h1>
-                        <p className="mt-6 text-xl leading-8 text-gray-800 text-justify">
-                            The first cloud agency based in the Kingdom of Saudi Arabia.
+                        <p className="mt-6 text-xl  text-black text-center">
+                            The first cloud agency based in the Kingdom of Saudi Arabia
                         </p>
 
                     </div>
@@ -56,7 +56,7 @@ export default function Hero() {
                         className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
                     />
                 </div>
-                <div className="bg-gradient-to-b from-transparent via-black/90 to-black  p-64 pb-24 flex flex-col justify-end items-end">
+                <div className="bg-gradient-to-b from-transparent via-black/90 to-black  lg:px-64 pt-64 pb-24 md:px-12  px-6 flex flex-col justify-end items-end">
                     <h6 className='text-white font-normal text-2xl mb-4 text-justify'>At TCA, we&apos;re all about changing how businesses see design and creativity,
                         We bring fresh ideas and one of a kind solutions to every project, pushing the boundaries of what design can do.
                     </h6>

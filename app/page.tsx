@@ -4,8 +4,9 @@ import Partners from "@/components/Partners";
 import Stats from "@/components/Stats";
 import Form from "@/components/Form";
 import HeroSuggested from "@/components/HeroSuggested";
-
+import Hero from "@/components/Hero";
 import { fetchServicesData } from "@/utils/helpers";
+import Statement from "@/components/Statement";
 
 const backUpServices = [
   {
@@ -75,8 +76,9 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Hero /> */}
-      <HeroSuggested />
+      <Hero />
+      {/* <HeroSuggested /> */}
+      {/* <Statement /> */}
       <Gradient />
       {/* @ts-ignore */}
       {(services || backUpServices).map((service, index) => (
