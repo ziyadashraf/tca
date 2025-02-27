@@ -13,7 +13,11 @@ export const getLanguage = (): "en" | "ar" =>
 
 export const API_URL = "https://tca-payload.vercel.app";
 
-export const getApiPath = (path: string) => `${API_URL}${path}`;
+export const getApiPath = (path: string) => {
+  if (!path) return "";
+  if (path.startsWith(API_URL)) return path;
+  return `${API_URL}${path}`;
+};
 
 ///////////////////////////////////////////////////////////////
 
