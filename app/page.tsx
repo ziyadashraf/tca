@@ -76,9 +76,9 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
-      {/* <HeroSuggested /> */}
-      {/* <Statement /> */}
+      {/* <Hero /> */}
+      <HeroSuggested />
+      <Statement />
       <Gradient />
       {/* @ts-ignore */}
       {(services || backUpServices).map((service, index) => (

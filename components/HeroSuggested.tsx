@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import hero from "@/public/images/Heros.png";
 import Button from "./Button";
-
+import Image from "next/image";
 import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 
@@ -17,10 +17,10 @@ export default async function HeroSuggested() {
         <div className="mx-auto max-w-7xl">
           {/* Mobile background image */}
           <div className="absolute inset-0 lg:hidden">
-            <img
+            <Image
               alt={landing?.heroImage?.alt || "Hero Image"}
               src={getApiPath(landing?.heroImage?.url) || hero.src}
-              className="h-full w-full object-cover "
+              className="h-full w-full object-cover brightness-90"
               width={1000}
               height={1000}
             />
@@ -30,7 +30,7 @@ export default async function HeroSuggested() {
             // Arabic layout - image on left, content on right (desktop only)
             <>
               <div className="hidden bg-gray-50 lg:absolute lg:inset-y-0 lg:left-0 lg:block lg:w-1/2">
-                <img
+                <Image
                   alt={landing?.heroImage?.alt || "Hero Image"}
                   src={getApiPath(landing?.heroImage?.url) || hero.src}
                   className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
@@ -41,7 +41,7 @@ export default async function HeroSuggested() {
               <div className="relative z-10 pt-14 lg:ml-auto lg:w-full lg:max-w-2xl">
                 <div className="relative px-6 py-24 sm:py-40 lg:px-8 lg:py-40 lg:pl-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl fade-in">
+                    <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
                       {t(landing?.heroText, lang) || (
                         <>
                           WELCOME TO
@@ -50,7 +50,7 @@ export default async function HeroSuggested() {
                         </>
                       )}
                     </h1>
-                    <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify">
+                    <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify sm:text-black">
                       {t(landing?.subText, lang) ||
                         "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                     </p>
@@ -62,7 +62,7 @@ export default async function HeroSuggested() {
                         Contact Us
                       </Button>
                       <Button
-                        style="text-sm font-semibold leading-6 text-gray-900"
+                        style="text-sm font-semibold leading-6 text-black"
                         href="/about"
                       >
                         Learn more →
@@ -86,7 +86,7 @@ export default async function HeroSuggested() {
                 </svg>
                 <div className="relative px-6 py-24 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl fade-in">
+                    <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
                       {t(landing?.heroText, lang) || (
                         <>
                           WELCOME TO
@@ -95,7 +95,7 @@ export default async function HeroSuggested() {
                         </>
                       )}
                     </h1>
-                    <p className="mt-6 text-lg leading-8 text-gray-600 fade-in text-justify">
+                    <p className="mt-6 text-lg leading-8 lg:text-gray-600 fade-in text-justify text-black">
                       {t(landing?.subText, lang) ||
                         "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                     </p>
@@ -107,7 +107,7 @@ export default async function HeroSuggested() {
                         Contact Us
                       </Button>
                       <Button
-                        style="text-sm font-semibold leading-6 text-gray-900"
+                        style="text-sm font-semibold leading-6 text-black"
                         href="/about"
                       >
                         Learn more →
@@ -121,7 +121,7 @@ export default async function HeroSuggested() {
         </div>
         {lang === "en" && (
           <div className="hidden bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2">
-            <img
+            <Image
               alt={landing?.heroImage?.alt || "Hero Image"}
               src={getApiPath(landing?.heroImage?.url) || hero.src}
               className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
