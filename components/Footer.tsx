@@ -1,12 +1,13 @@
 import { JSX, SVGProps } from "react"
+import Cookies from "js-cookie"
+import Link from "next/link";
 
 const navigation = {
     main: [
-        { name: 'Home', href: '#' },
-        { name: 'About', href: '#' },
-        { name: 'Services', href: '#' },
-        { name: 'Contact', href: '#' },
-        { name: 'Privacy Policy', href: '#' },
+        { name: 'Home', href: '/' },
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
+
     ],
     social: [
         {
@@ -74,24 +75,31 @@ const navigation = {
 }
 
 export default function Footer() {
+    const lang = Cookies.get("lang") || "en"; // Get the language from cookies, default to "en"
+
     return (
         <footer className="bg-black">
             <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-                <nav aria-label="Footer" className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12">
+                <nav aria-label="Footer" className="columns-2 sm:flex sm:justify-center ">
                     {navigation.main.map((item) => (
                         <div key={item.name} className="pb-6">
-                            <a href={item.href} className="text-sm leading-6 text-gray-200 hover:text-gray-300">
-                                {item.name}
-                            </a>
+                            <Link href={item.href} className="text-sm p-6 leading-6 rtl:text-left text-gray-200 hover:text-gray-300">
+                                {lang === "ar" ?
+                                    (item.name === 'Home' ? 'الرئيسية' :
+                                        item.name === 'About' ? 'المزيد عننا' :
+                                            item.name === 'Contact' ? 'تواصل معنا' :
+                                                item.name)
+                                    : item.name}
+                            </Link  >
                         </div>
                     ))}
                 </nav>
-                <div className="mt-10 flex justify-center space-x-10">
+                <div className="mt-10 flex justify-center ">
                     {navigation.social.map((item) => (
-                        <a key={item.name} href={item.href} className="text-gray-200 hover:text-gray-300">
+                        <Link key={item.name} href={item.href} className="text-gray-200 px-4 hover:text-gray-300">
                             <span className="sr-only">{item.name}</span>
                             <item.icon aria-hidden="true" className="h-6 w-6" />
-                        </a>
+                        </Link>
                     ))}
                 </div>
                 <p className="mt-10 text-center text-xs leading-5 text-gray-500">

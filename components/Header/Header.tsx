@@ -164,12 +164,12 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Link href="/" className="text-sm font-medium leading-6 text-gray-100">
-            Home
+            {lang === "ar" ? "الرئيسية" : "Home"}
           </Link>
 
           <div className="group relative hover:cursor-pointer">
             <div className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
-              Services
+              {lang === "ar" ? "الخدمات" : "Services"}
               <ChevronDownIcon
                 aria-hidden="true"
                 className="h-5 w-5 flex-none text-gray-500 transition-transform duration-200 group-hover:rotate-180"
@@ -184,9 +184,11 @@ export default function Header() {
                     className="group relative flex gap-x-6 p-4 text-sm leading-6 hover:bg-gray-900"
                   >
                     <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center">
-                      <img
+                      <Image
                         src={getApiPath(item.image.url)}
-                        aria-hidden="true"
+                        alt={item.name}
+                        width={64}
+                        height={64}
                         className="invert h-16 w-16 text-gray-400 group-hover:text-white"
                       />
                     </div>
@@ -212,14 +214,14 @@ export default function Header() {
             href="/about"
             className="text-sm font-medium leading-6 text-gray-100"
           >
-            About
+            {lang === "ar" ? "حول" : "About"}
           </Link>
 
           <Link
             href="/contact"
             className="text-sm font-medium leading-6 text-gray-100"
           >
-            Contact
+            {lang === "ar" ? "اتصل" : "Contact"}
           </Link>
 
           {/* <Popover className="relative">
@@ -328,21 +330,21 @@ export default function Header() {
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Home
+                    {lang === "ar" ? "الرئيسية" : "Home"}
                   </Link>
                   <Link
                     href="/about"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    About
+                    {lang === "ar" ? "المزيد عننا" : "About"}
                   </Link>
                   <Link
                     href="/contact"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Contact
+                    {lang === "ar" ? "تواصل معنا" : "Contact"}
                   </Link>
                 </div>
                 <div className="space-y-1">

@@ -54,7 +54,7 @@ export default function Jobs() {
 
   const contact = useMemo(() => data?.contact, [data]);
 
-  const lang = Cookies.get("lang");
+  const lang = Cookies.get("lang") || "en"; // Get the language from cookies, default to "en"
 
   if (isLoading) return null;
 
@@ -86,7 +86,7 @@ export default function Jobs() {
                 href={"#"}
                 className="inline-flex items-center bg-black px-4 py-3 text-sm font-medium text-white border border-white"
               >
-                Apply now
+                {lang === "ar" ? "قدّم الآن" : "Apply now"}
               </Link>
             </div>
           </div>
@@ -95,8 +95,13 @@ export default function Jobs() {
       <div className="relative border border-white bg-white p-6 w-full">
         <div className="flex flex-col space-y-2 mb-8">
           <h3 className="text-3xl font-normal text-black text-justify">
-            Ready to embark on a new creative journey with us?
-            <br /> Send us your CV and let&apos;s explore the possibilities together.
+            {lang === "ar"
+              ? "هل أنت مستعد لبدء رحلة إبداعية جديدة معنا؟"
+              : "Ready to embark on a new creative journey with us?"}
+            <br />
+            {lang === "ar"
+              ? "أرسل لنا سيرتك الذاتية ودعنا نستكشف الإمكانيات معًا."
+              : "Send us your CV and let's explore the possibilities together."}
           </h3>
         </div>
 
@@ -105,7 +110,7 @@ export default function Jobs() {
             href=""
             className="inline-flex items-center bg-white px-4 py-3 text-sm font-medium text-black border border-black"
           >
-            Send your CV
+            {lang === "ar" ? "أرسل سيرتك الذاتية" : "Send your CV"}
           </Link>
         </div>
       </div>
