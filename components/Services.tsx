@@ -22,7 +22,7 @@ const Services = (ServiceProps: ServicesProps) => {
   return (
     <div
       className={`lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 
-        flex flex-col-reverse md:flex-row items-center justify-between gap-4
+        flex flex-col-reverse md:flex-row lg:items-center items-start justify-between gap-4
         lg:gap-16
         ${ServiceProps.type === "white"
           ? "bg-white md:flex-row"
@@ -56,7 +56,7 @@ const Services = (ServiceProps: ServicesProps) => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-row items-end w-full md:w-auto">
+      <div className="flex flex-row items-end lg:w-auto w-1/2">
         <Image
           src={getApiPath(ServiceProps?.image?.url) || ServiceProps.image.url}
           alt={t(ServiceProps.service, lang)}

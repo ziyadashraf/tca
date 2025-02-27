@@ -1,6 +1,7 @@
 import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import TheLine from "./TheLine";
+import Image from "next/image";
 const Partners = async () => {
   const { partners } = await fetchHomeData();
 
@@ -27,15 +28,15 @@ const Partners = async () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-row gap-8 lg:gap-12 flex-wrap justify-center w-full lg:w-1/3">
+      <div className="flex flex-row flex-wrap justify-between w-full lg:w-2/5 ">
         {partners?.images?.map((img: any, i: number) => (
-          <img
+          <Image
             key={i}
             src={getApiPath(img.image.url)}
             alt={img.image.alt}
-            className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
-            width={100}
-            height={100}
+            className=" "
+            width={160}
+            height={160}
           />
         ))}
       </div>
