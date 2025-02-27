@@ -39,7 +39,7 @@ export default async function HeroSuggested() {
                 />
               </div>
               <div className="relative z-10 pt-14 lg:ml-auto lg:w-full lg:max-w-2xl">
-                <div className="relative px-6 py-24 sm:py-40 lg:px-8 lg:py-40 lg:pl-0">
+                <div className="relative px-6 py-64 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                     <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
                       {t(landing?.heroText, lang) || (
@@ -59,13 +59,13 @@ export default async function HeroSuggested() {
                         style="bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         href="#contact-form"
                       >
-                        Contact Us
+                        تواصل معنا
                       </Button>
                       <Button
                         style="text-sm font-semibold leading-6 text-black"
                         href="/about"
                       >
-                        Learn more →
+                        تعرف على المزيد
                       </Button>
                     </div>
                   </div>
