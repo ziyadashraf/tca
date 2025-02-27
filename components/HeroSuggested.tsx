@@ -75,15 +75,15 @@ export default async function HeroSuggested() {
           ) : (
             // English layout - content on left, image on right (desktop only)
             <>
-              <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
-                <svg
+              <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl" >
+                {/* <svg
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
                   aria-hidden="true"
-                  className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform  lg:block"
+                  className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform  lg:block "
                 >
                   <polygon points="0,0 90,0 50,100 0,100" />
-                </svg>
+                </svg> */}
                 <div className="relative px-6 py-24 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                     <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">

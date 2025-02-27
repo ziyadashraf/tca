@@ -36,12 +36,12 @@ export default async function RootLayout({
       suppressContentEditableWarning
       lang={language}
       dir={language === "ar" ? "rtl" : "ltr"}
-      className="bg-black "
+      className="bg-white "
     >
       <body
         suppressHydrationWarning
         suppressContentEditableWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-white`}
       >
         <AppWrapper>{children}</AppWrapper>
       </body>
