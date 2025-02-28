@@ -193,7 +193,7 @@ export default function Header() {
                         alt={item.name}
                         width={64}
                         height={64}
-                        className="invert h-16 w-16 text-gray-400 group-hover:text-white"
+                        className=" h-16 w-16 text-gray-400 group-hover:text-white"
                       />
                     </div>
                     <div className="flex-auto">
@@ -218,14 +218,14 @@ export default function Header() {
             href="/about"
             className="text-sm font-medium leading-6 text-gray-100"
           >
-            {lang === "ar" ? "حول" : "About"}
+            {lang === "ar" ? "المزيد عننا" : "About"}
           </Link>
 
           <Link
             href="/contact"
             className="text-sm font-medium leading-6 text-gray-100"
           >
-            {lang === "ar" ? "اتصل" : "Contact"}
+            {lang === "ar" ? "تواصل معنا" : "Contact"}
           </Link>
 
           {/* <Popover className="relative">
