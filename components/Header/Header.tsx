@@ -322,7 +322,13 @@ export default function Header() {
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center">
-                        {item.icon}
+                        <Image
+                          src={getApiPath(item.image.url)}
+                          alt={item.name}
+                          width={64}
+                          height={64}
+                          className=" h-16 w-16 text-gray-400 group-hover:text-white"
+                        />
                       </div>
                       {t(item.name, lang)}
                     </Link>
