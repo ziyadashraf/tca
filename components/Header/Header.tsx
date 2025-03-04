@@ -81,7 +81,7 @@ export default function Header({ services }: HeaderProps) {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">TCA</span>
-            <Image src={Logo} alt="TCA logo" width={100} height={100} />
+            <Image src={Logo} alt="TCA logo" width={100} height={100} className="invert" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -130,7 +130,7 @@ export default function Header({ services }: HeaderProps) {
                         alt={item.name.en}
                         width={64}
                         height={64}
-                        className=" h-16 w-16 text-gray-400 group-hover:text-white"
+                        className=" h-16 w-16 text-gray-400 group-hover:text-white invert"
                       />
                     </div>
                     <div className="flex-auto">
@@ -244,7 +244,7 @@ export default function Header({ services }: HeaderProps) {
                           alt={item.name.en}
                           width={64}
                           height={64}
-                          className=" h-16 w-16 text-gray-400 group-hover:text-white"
+                          className=" h-16 w-16 text-gray-400 group-hover:text-white invert"
                         />
                       </div>
                       {t(item.name, lang)}
