@@ -2,14 +2,15 @@ import { fetchProjectsData, fetchServicesData } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import ServicePageClient from "./ServicePageClient";
 
-export default async function ServicesPage({
-  params,
-}: {
-  params: { service: string };
-}) {
+interface PageProps {
+  params: Promise<{ service: string }>;
+}
+
+export default async function ServicesPage({ params }: PageProps) {
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
-  const serviceSlug = params.service;
+
+  const serviceSlug = (await params).service;
 
   const [{ services }, { projects }] = await Promise.all([
     fetchServicesData(),

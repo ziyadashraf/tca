@@ -5,6 +5,7 @@ import Link from "next/link";
 import { fetchServicesData, getApiPath, t } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import { Service } from "@/types/payload-types";
 
 // const services = [
 //   {
@@ -57,15 +58,6 @@ import { useMemo } from "react";
 //   },
 // ];
 
-// Add this interface at the top of the file
-interface Service {
-  service: { en: string; ar: string };
-  description: { en: string; ar: string };
-  image: {
-    url: string;
-  };
-}
-
 export default function Services() {
   const { data, isLoading } = useQuery({
     queryKey: ["landing"],
@@ -83,22 +75,24 @@ export default function Services() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto  max-w-2xl   lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-24 lg:max-w-none lg:grid-cols-2">
-            {services?.map((service: Service, index: number) => (
+            {services?.map((service, index) => (
               <div key={index} className="flex flex-col">
                 <dt className="flex items-center gap-x-3  font-semibold  text-gray-900 text-lg">
                   <img
                     src={getApiPath(service.image.url)}
-                    alt={t(service.service, lang)}
+                    alt={t(service.name, lang)}
                     aria-hidden="true"
                     className=" flex-none"
                   />
-                  {t(service.service, lang)}
+                  {t(service.name, lang)}
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base text-justify leading-7 text-gray-700">
-                  <p className="flex-auto">{t(service.description, lang)}</p>
+                  <p className="flex-auto">
+                    {t(service.longDescription, lang)}
+                  </p>
                   <p className="mt-6">
                     <Link
-                      href={"#"}
+                      href={`/services/${service.slug}`}
                       className="bg-black text-white text-sm font-medium px-4 py-3 "
                     >
                       Discover More
