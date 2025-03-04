@@ -58,13 +58,13 @@ import { useMemo } from "react";
 // ];
 
 // Add this interface at the top of the file
-interface Service {
-  service: { en: string; ar: string };
-  description: { en: string; ar: string };
-  image: {
-    url: string;
-  };
-}
+// interface Service {
+//   service: { en: string; ar: string };
+//   description: { en: string; ar: string };
+//   image: {
+//     url: string;
+//   };
+// }
 
 export default function Services() {
   const { data, isLoading } = useQuery({
