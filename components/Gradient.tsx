@@ -1,14 +1,11 @@
+"use client";
 
 import TheLine from "./TheLine";
+import Cookies from "js-cookie";
+import { t } from "@/utils/helpers";
 
-import { fetchHomeData, t } from "@/utils/helpers";
-import { cookies } from "next/headers";
-
-const Gradient = async () => {
-  const { services } = await fetchHomeData();
-
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+const Gradient = () => {
+  const lang = Cookies.get("lang") || "en";
 
   return (
     <div
@@ -25,12 +22,17 @@ const Gradient = async () => {
         <TheLine mode={"white"} />
         <div className="ps-6">
           <h6 className="text-black text-lg sm:text-xl font-light mb-4 sm:mb-8 uppercase">
-            {t(services?.title, lang) || "Our Services"}
+            {t({ en: "Our Services", ar: "خدماتنا" }, lang)}
           </h6>
 
           <p className="text-black text-xl sm:text-2xl md:text-3xl font-medium w-full sm:w-2/3 md:w-2/3">
-            {t(services?.description, lang) ||
-              "We Offer a Wide Range of Creative Solutions"}
+            {t(
+              {
+                en: "We Offer a Wide Range of Creative Solutions",
+                ar: "نقدم حلولًا مبتكرة ومتنوعة لتلبية احتياجاتك",
+              },
+              lang
+            )}
           </p>
         </div>
       </div>

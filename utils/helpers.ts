@@ -1,4 +1,12 @@
 import Cookies from "js-cookie";
+import { stringify } from "qs-esm";
+import {
+  Page,
+  HomeFields,
+  Service,
+  NewsItem,
+  Project,
+} from "../types/payload-types";
 
 export const t = (obj: { en: string; ar: string }, lang: string = "en") => {
   return lang === "en" ? obj?.en : obj?.ar;
@@ -11,7 +19,8 @@ export const switchLanguage = (lang: "en" | "ar") => {
 export const getLanguage = (): "en" | "ar" =>
   Cookies.get("lang") as "en" | "ar";
 
-export const API_URL = "https://tca-payload.vercel.app";
+export const API_URL = "https://admin.tca.com.sa/";
+// export const API_URL = "http://localhost:3001";
 
 export const getApiPath = (path: string) => {
   if (!path) return "";
@@ -21,7 +30,7 @@ export const getApiPath = (path: string) => {
 
 ///////////////////////////////////////////////////////////////
 
-export const fetchNewsData = async () => {
+export const fetchNewsData = async (): Promise<{ news: NewsItem[] }> => {
   const res = await fetch(getApiPath("/api/news"), {
     method: "GET",
     headers: {
@@ -36,41 +45,43 @@ export const fetchNewsData = async () => {
   return { news };
 };
 
-export const fetchHomeData = async () => {
-  const res = await fetch(
-    getApiPath(
-      "/api/pages/67badded9dafb13bb542eddc?depth=1&draft=false&locale=undefined"
-    ),
+export const fetchPageData = async (
+  slug: string
+): Promise<{ page: Page | null }> => {
+  const query = stringify(
     {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
+    },
+    {
+      addQueryPrefix: true,
     }
   );
+
+  const res = await fetch(getApiPath(`/api/pages${query}`), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   const data = await res.json();
 
-  const landing = data.landing;
-  const partners = data.partners;
-  const services = data.services;
-  const stats = data.stats;
-  const about = data.about;
-  const contact = data.contact;
+  const page = data?.docs[0] || null;
 
-  return { landing, partners, services, stats, about, contact };
+  return { page };
 };
 
-export const fetchServicesData = async () => {
-  const res = await fetch(
-    getApiPath("/api/services/?depth=1&draft=false&locale=undefined"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+export const fetchServicesData = async (): Promise<{ services: Service[] }> => {
+  const res = await fetch(getApiPath("/api/services/"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   const data = await res.json();
 
@@ -79,22 +90,32 @@ export const fetchServicesData = async () => {
   return { services };
 };
 
-export const fetchHeaderData = async () => {
-  const res = await fetch(
-    getApiPath(
-      "/api/header/67bafadfec3aa8fcc4c012ba?depth=1&draft=false&locale=undefined"
-    ),
+export const fetchProjectsData = async (
+  serviceSlug: string
+): Promise<{ projects: Project[] }> => {
+  const query = stringify(
     {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+      where: {
+        "service.slug": {
+          equals: serviceSlug,
+        },
       },
+      depth: 1,
+    },
+    {
+      addQueryPrefix: true,
     }
   );
 
+  const res = await fetch(getApiPath(`/api/projects${query}`), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
   const data = await res.json();
+  const projects = data?.docs || [];
 
-  const products = data?.products || [];
-
-  return { products };
+  return { projects };
 };

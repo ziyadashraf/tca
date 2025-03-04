@@ -1,9 +1,9 @@
-import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
+import { fetchPageData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import TheLine from "./TheLine";
 import Image from "next/image";
 const Partners = async () => {
-  const { partners } = await fetchHomeData();
+  const { page } = await fetchPageData("/");
 
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
@@ -16,11 +16,11 @@ const Partners = async () => {
         {/* <h6 className='text-white text-2xl font-medium mb-8'>Our Partners</h6> */}
         <div className="">
           <h6 className="text-white text-xl font-light mb-6 lg:mb-8 uppercase  lg:text-left">
-            {t(partners?.title, lang) || "Our Partners"}
+            {t(page?.homeFields?.partners?.title!, lang) || "Our Partners"}
           </h6>
 
           <p className="text-white text-md font-normal text-justify">
-            {t(partners?.description, lang) ||
+            {t(page?.homeFields?.partners?.description!, lang) ||
               `Our collaborative efforts extend to industry leaders and innovative
           companies. We believe in forging strong partnerships to drive
           creativity, innovation, and excellence. Together, we shape compelling
@@ -29,7 +29,7 @@ const Partners = async () => {
         </div>
       </div>
       <div className="flex flex-row flex-wrap justify-between w-full lg:w-2/5 ">
-        {partners?.images?.map((img: any, i: number) => (
+        {page?.homeFields?.partners?.images?.map((img: any, i: number) => (
           <Image
             key={i}
             src={getApiPath(img.image.url)}

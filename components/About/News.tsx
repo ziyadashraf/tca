@@ -1,8 +1,9 @@
 "use client";
 
 import Cookies from "js-cookie";
-import { useEffect, useMemo, useRef } from "react";
 import TheLine from "../TheLine";
+
+import { useEffect, useMemo, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNewsData, getApiPath, t } from "@/utils/helpers";
 
@@ -106,7 +107,9 @@ const News = () => {
             {lang === "ar" ? "أخبار" : "News"}
           </p>
           <h6 className="text-black text-2xl font-medium mb-8">
-            {lang === "ar" ? "وكالة السحابة في الصحافة" : "The Cloud Agency In The Press"}
+            {lang === "ar"
+              ? "وكالة السحابة في الصحافة"
+              : "The Cloud Agency In The Press"}
           </h6>
         </div>
       </div>

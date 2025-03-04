@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import Cookies from "js-cookie";
-
-import { fetchHomeData, t } from "@/utils/helpers";
+import { fetchPageData, t } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { Job } from "@/types/payload-types";
 
 // const actions = [
 //   {
@@ -38,49 +37,39 @@ import { useMemo } from "react";
 //   return classes.filter(Boolean).join(" ");
 // }
 
-// Add this interface at the top of the file
-interface Job {
-  title: { en: string; ar: string };
-  location: { en: string; ar: string };
-  offerings: { en: string; ar: string };
-  description: { en: string; ar: string };
-}
-
 export default function Jobs() {
   const { data, isLoading } = useQuery({
-    queryKey: ["landing"],
-    queryFn: fetchHomeData,
+    queryKey: ["contact"],
+    queryFn: async () => await fetchPageData("/contact"),
   });
 
-  const contact = useMemo(() => data?.contact, [data]);
-
-  const lang = Cookies.get("lang") || "en"; // Get the language from cookies, default to "en"
+  const lang = Cookies.get("lang") || "en";
 
   if (isLoading) return null;
 
   return (
     <div className=" lg:px-64 py-24 md:py-16 px-6 bg-black">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 mb-8">
-        {contact?.jobs?.map((action: Job, index: number) => (
+        {data?.page?.contactFields?.jobs?.map((job, index) => (
           <div
             key={index}
             className="relative border border-white bg-transparent p-6"
           >
             <div className="flex flex-col space-y-2">
               <h3 className="text-lg font-semibold text-gray-100">
-                {t(action.title, lang)}
+                {t(job.title, lang)}
               </h3>
-              <p className="text-sm text-gray-400">
-                {t(action.location, lang)}
-              </p>
-              <p className="text-sm text-gray-400">
-                {t(action.offerings, lang)}
-              </p>
+              <p className="text-sm text-gray-400">{t(job.location, lang)}</p>
+              <div className="text-sm text-gray-400">
+                {job.offerings.map((offer, i) => (
+                  <p key={i}>{t(offer.offering, lang)}</p>
+                ))}
+              </div>
             </div>
 
             <div className="mt-4 flex flex-col items-start justify-between">
               <p className="text-sm text-gray-200 mb-14 text-justify">
-                {t(action.description, lang)}
+                {t(job.description, lang)}
               </p>
               <Link
                 href={"#"}

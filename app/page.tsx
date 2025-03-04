@@ -74,6 +74,8 @@ const backUpServices = [
 export default async function Home() {
   const { services } = await fetchServicesData();
 
+  if (!services) return null;
+
   return (
     <>
       {/* <Hero /> */}
@@ -82,7 +84,7 @@ export default async function Home() {
       <Gradient />
       {/* @ts-ignore */}
       {(services || backUpServices).map((service, index) => (
-        <Services key={index} {...service} />
+        <Services index={index} key={index} service={service} />
       ))}
       <Partners />
       <Stats />

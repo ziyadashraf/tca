@@ -1,10 +1,11 @@
-import "./globals.css";
-
-import AppWrapper from "@/components/AppWrapper";
-
 import type { Metadata } from "next";
-
+import { Inter } from "next/font/google";
+import "./globals.css";
+import HeaderWrapper from "@/components/Header/HeaderWrapper";
+import Footer from "@/components/Footer";
+import { Providers } from "./providers";
 import { cookies } from "next/headers";
+
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -18,32 +19,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Cloud Agency",
-  description: "The Cloud Agency",
+  title: "TCA",
+  description: "TCA - Creative Agency",
 };
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const cookieStore = await cookies();
-  const language = cookieStore.get("lang")?.value || "en"; // Default to English
+  const lang = cookieStore.get("lang")?.value || "en";
 
   return (
     <html
       suppressHydrationWarning
       suppressContentEditableWarning
-      lang={language}
-      dir={language === "ar" ? "rtl" : "ltr"}
+      lang={lang}
+      dir={lang === "ar" ? "rtl" : "ltr"}
       className="bg-white "
     >
       <body
-        suppressHydrationWarning
-        suppressContentEditableWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-white`}
       >
-        <AppWrapper>{children}</AppWrapper>
+        <Providers>
+          <div className="hidden">
+            list-disc list-decimal list-none text-left rtl:text-right
+            text-center text-right
+          </div>
+          <HeaderWrapper />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

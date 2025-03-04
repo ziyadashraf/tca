@@ -1,18 +1,20 @@
 "use client";
 
+import Cookies from "js-cookie";
+
 import { useQuery } from "@tanstack/react-query";
 import { Timeline } from "../ui/timeline";
-import { fetchHomeData } from "@/utils/helpers";
+import { fetchPageData, t } from "@/utils/helpers";
 import { useMemo } from "react";
 
 //on arrival change to purple
 const Journey = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["landing"],
-    queryFn: fetchHomeData,
+    queryKey: ["about"],
+    queryFn: async () => await fetchPageData("/about"),
   });
 
-  const about = useMemo(() => data?.about, [data]);
+  const lang = Cookies.get("lang");
 
   if (isLoading) return null;
 
@@ -20,17 +22,22 @@ const Journey = () => {
     <div className="bg-black pt-16">
       <div className="lg:px-64 px-6">
         <p className="text-white text-lg font-light mb-4 uppercase">
-          Our Journey
+          {t(data?.page?.aboutFields?.journey?.title!, lang) || "Our Journey"}
         </p>
         <h6 className="text-white text-2xl font-medium mb-8">
-          Charting Our Path Through Innovation and Growth
+          {t(data?.page?.aboutFields?.journey?.subtitle!, lang) ||
+            "Charting Our Path Through Innovation and Growth"}
         </h6>
       </div>
       <div className="lg:px-40 px-6">
-        <Timeline data={about?.journey?.steps?.map((step: { title: { en: any; }; content: { en: any; }; }) => ({
-          title: step.title.en, // Ensure only the English title is used
-          content: step.content.en, // Ensure only the English content is used
-        }))} />
+        <Timeline
+          data={
+            data?.page?.aboutFields?.journey?.items?.map((step) => ({
+              title: t(step.title, lang),
+              content: t(step.content, lang),
+            })) || []
+          }
+        />
       </div>
     </div>
   );

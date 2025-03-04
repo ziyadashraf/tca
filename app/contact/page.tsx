@@ -8,28 +8,29 @@ import Form from "@/components/Form";
 import Cookies from "js-cookie";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
+import { fetchPageData, getApiPath, t } from "@/utils/helpers";
 import { useMemo } from "react";
 
 const ContactPage = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["landing"],
-    queryFn: fetchHomeData,
+    queryKey: ["contact"],
+    queryFn: async () => await fetchPageData("/contact"),
   });
-
-  const contact = useMemo(() => data?.contact, [data]);
 
   const lang = Cookies.get("lang");
 
-  if (isLoading) return null;
+  if (!data || isLoading) return null;
 
   return (
     <div>
       <Welcome
-        heading={t(contact.title, lang)}
-        paragraph={t(contact.subtitle, lang)}
+        heading={t(data?.page?.contactFields?.welcomeSection?.title!, lang)}
+        paragraph={t(
+          data?.page?.contactFields?.welcomeSection?.subtitle!,
+          lang
+        )}
       />
-      {contact?.sections.map((section: any, index: number) => (
+      {/* {data?.page?.contactFields?.sections.map((section: any, index: number) => (
         <Section
           key={index}
           Title={t(section.title, lang)}
@@ -38,7 +39,7 @@ const ContactPage = () => {
           image={getApiPath(section.image.url)}
           mode={section.mode || "white"}
         />
-      ))}
+      ))} */}
 
       <Jobs />
       <Form />

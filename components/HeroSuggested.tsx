@@ -2,11 +2,11 @@
 import hero from "@/public/images/Heros.png";
 import Button from "./Button";
 import Image from "next/image";
-import { fetchHomeData, getApiPath, t } from "@/utils/helpers";
+import { fetchPageData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 
 export default async function HeroSuggested() {
-  const { landing } = await fetchHomeData();
+  const { page } = await fetchPageData("/");
 
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
@@ -18,8 +18,11 @@ export default async function HeroSuggested() {
           {/* Mobile background image */}
           <div className="absolute inset-0 lg:hidden">
             <Image
-              alt={landing?.heroImage?.alt || "Hero Image"}
-              src={getApiPath(landing?.heroImage?.url) || hero.src}
+              alt={page?.homeFields?.hero?.heroImage?.alt || "Hero Image"}
+              src={
+                getApiPath(page?.homeFields?.hero?.heroImage?.url || "") ||
+                hero.src
+              }
               className="h-full w-full object-cover brightness-90"
               width={1000}
               height={1000}
@@ -31,8 +34,11 @@ export default async function HeroSuggested() {
             <>
               <div className="hidden bg-gray-50 lg:absolute lg:inset-y-0 lg:left-0 lg:block lg:w-1/2">
                 <Image
-                  alt={landing?.heroImage?.alt || "Hero Image"}
-                  src={getApiPath(landing?.heroImage?.url) || hero.src}
+                  alt={page?.homeFields?.hero?.heroImage?.alt || "Hero Image"}
+                  src={
+                    getApiPath(page?.homeFields?.hero?.heroImage?.url || "") ||
+                    hero.src
+                  }
                   className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
                   width={1000}
                   height={1000}
@@ -42,7 +48,7 @@ export default async function HeroSuggested() {
                 <div className="relative px-6 py-64 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                     <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
-                      {t(landing?.heroText, lang) || (
+                      {t(page?.homeFields?.hero?.heroText!, lang) || (
                         <>
                           WELCOME TO
                           <br />
@@ -51,7 +57,7 @@ export default async function HeroSuggested() {
                       )}
                     </h1>
                     <p className="mt-6 text-lg leading-8 lg:text-gray-600 fade-in text-justify text-black">
-                      {t(landing?.subText, lang) ||
+                      {t(page?.homeFields?.hero?.subText!, lang) ||
                         "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
@@ -75,7 +81,7 @@ export default async function HeroSuggested() {
           ) : (
             // English layout - content on left, image on right (desktop only)
             <>
-              <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl" >
+              <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
                 {/* <svg
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
@@ -87,7 +93,7 @@ export default async function HeroSuggested() {
                 <div className="relative px-6 py-64 sm:py-40 lg:px-8 lg:py-40 lg:pr-0">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                     <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl fade-in">
-                      {t(landing?.heroText, lang) || (
+                      {t(page?.homeFields?.hero?.heroText!, lang) || (
                         <>
                           WELCOME TO
                           <br />
@@ -96,7 +102,7 @@ export default async function HeroSuggested() {
                       )}
                     </h1>
                     <p className="mt-6 text-lg leading-8 lg:text-gray-600 fade-in text-justify text-black">
-                      {t(landing?.subText, lang) ||
+                      {t(page?.homeFields?.hero?.subText!, lang) ||
                         "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
@@ -122,8 +128,11 @@ export default async function HeroSuggested() {
         {lang === "en" && (
           <div className="hidden bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2">
             <Image
-              alt={landing?.heroImage?.alt || "Hero Image"}
-              src={getApiPath(landing?.heroImage?.url) || hero.src}
+              alt={page?.homeFields?.hero?.heroImage?.alt || "Hero Image"}
+              src={
+                getApiPath(page?.homeFields?.hero?.heroImage?.url || "") ||
+                hero.src
+              }
               className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
               width={1000}
               height={1000}
