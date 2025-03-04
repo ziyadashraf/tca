@@ -2,7 +2,6 @@ import Cookies from "js-cookie";
 import { stringify } from "qs-esm";
 import {
   Page,
-  HomeFields,
   Service,
   NewsItem,
   Project,
@@ -19,7 +18,7 @@ export const switchLanguage = (lang: "en" | "ar") => {
 export const getLanguage = (): "en" | "ar" =>
   Cookies.get("lang") as "en" | "ar";
 
-export const API_URL = "https://admin.tca.com.sa/";
+export const API_URL = "https://admin.tca.com.sa";
 // export const API_URL = "http://localhost:3001";
 
 export const getApiPath = (path: string) => {
