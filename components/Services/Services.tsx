@@ -66,39 +66,41 @@ interface Service {
   };
 }
 
-// export default function Services() {
-//   const { data, isLoading } = useQuery({
-//     queryKey: ["landing"],
-//     queryFn: fetchServicesData,
-//   });
+export default function Services() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["landing"],
+    queryFn: fetchServicesData,
+  });
 
-//   const services = useMemo(() => data?.services, [data]);
+  const services = useMemo(() => data?.services, [data]);
 
-//   const lang = Cookies.get("lang");
+  const lang = Cookies.get("lang") as "en" | "ar";
 
-//   if (isLoading) return null;
+  if (isLoading) return null;
 
   return (
     <div className="bg-white lg:px-64 py-24 md:py-16 px-6">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto  max-w-2xl   lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-24 lg:max-w-none lg:grid-cols-2">
-            {services?.map((service: Service, index: number) => (
+            {services?.map((service, index) => (
               <div key={index} className="flex flex-col">
                 <dt className="flex items-center gap-x-3  font-semibold  text-gray-900 text-lg">
                   <img
                     src={getApiPath(service.image.url)}
-                    alt={t(service.service, lang)}
+                    alt={t(service.name, lang)}
                     aria-hidden="true"
                     className=" flex-none"
                   />
-                  {t(service.service, lang)}
+                  {t(service.name, lang)}
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base text-justify leading-7 text-gray-700">
-                  <p className="flex-auto">{t(service.description, lang)}</p>
+                  <p className="flex-auto">
+                    {t(service.longDescription, lang)}
+                  </p>
                   <p className="mt-6">
                     <Link
-                      href={"#"}
+                      href={`/services/${service.slug}`}
                       className="bg-black text-white text-sm font-medium px-4 py-3 "
                     >
                       Discover More
