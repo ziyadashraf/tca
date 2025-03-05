@@ -65,7 +65,8 @@ export default function ServicePageClient({
                     className="absolute inset-0 -z-10 h-full w-full object-cover rounded-2xl"
                   />
                 ))}
-              <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+              <h3 className="relative z-10 mt-3 text-lg font-semibold leading-6 text-white">
                 {t(project.name, lang)}
               </h3>
             </article>
