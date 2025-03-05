@@ -37,6 +37,7 @@ const Partners = async () => {
             className="object-cover"
             width={160}
             height={160}
+            loading="eager"
           />
         ))}
       </div>
