@@ -45,14 +45,14 @@ export default function ServicePageClient({
           {projects.map((project, index) => (
             <article
               key={project.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 cursor-pointer hover:opacity-90 transition-opacity"
+              className="relative isolate flex flex-col justify-end overflow-hidden  bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => handleProjectClick(index)}
             >
               {project.assets?.[0]?.media &&
                 (project.assets[0].media.mimeType.startsWith("video/") ? (
                   <video
                     src={getApiPath(project.assets[0].media.url)}
-                    className="absolute inset-0 -z-10 h-full w-full object-cover rounded-2xl"
+                    className="absolute inset-0 -z-10 h-full w-full object-cover "
                     muted
                     loop
                     playsInline
@@ -62,7 +62,7 @@ export default function ServicePageClient({
                     src={getApiPath(project.assets[0].media.url)}
                     alt={project.name.en}
                     fill
-                    className="absolute inset-0 -z-10 h-full w-full object-cover rounded-2xl"
+                    className="absolute inset-0 -z-10 h-full w-full object-cover "
                   />
                 ))}
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
