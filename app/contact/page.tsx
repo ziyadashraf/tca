@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
 
 import Welcome from "@/components/Welcome";
 
@@ -11,25 +10,21 @@ import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { t, fetchPageData } from "@/utils/helpers";
 import { Page } from "@/types/payload-types";
+import { cookies } from "next/headers";
 
-const ContactPage = () => {
-  const { data } = useQuery({
-    queryKey: ["contact"],
-    queryFn: async () => await fetchPageData("/contact"),
-  });
+const ContactPage = async () => {
+  const { page } = await fetchPageData("/contact");
 
-  const lang = Cookies.get("lang");
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("lang")?.value;
 
-  if (!data) return null;
+  if (!page) return null;
 
   return (
     <div>
       <Welcome
-        heading={t(data?.page?.contactFields?.welcomeSection?.title!, lang)}
-        paragraph={t(
-          data?.page?.contactFields?.welcomeSection?.subtitle!,
-          lang
-        )}
+        heading={t(page?.contactFields?.welcomeSection?.title!, lang)}
+        paragraph={t(page?.contactFields?.welcomeSection?.subtitle!, lang)}
       />
       {/* {data?.page?.contactFields?.sections.map((section: any, index: number) => (
         <Section

@@ -1,10 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { fetchPageData, t } from "@/utils/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { Job } from "@/types/payload-types";
+import { cookies } from "next/headers";
 
 // const actions = [
 //   {
@@ -37,20 +36,18 @@ import { Job } from "@/types/payload-types";
 //   return classes.filter(Boolean).join(" ");
 // }
 
-export default function Jobs() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["contact"],
-    queryFn: async () => await fetchPageData("/contact"),
-  });
+export default async function Jobs() {
+  const { page } = await fetchPageData("/contact");
 
-  const lang = Cookies.get("lang") || "en";
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("lang")?.value;
 
-  if (isLoading) return null;
+  if (!page) return null;
 
   return (
     <div className=" lg:px-64 py-24 md:py-16 px-6 bg-black">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 mb-8">
-        {data?.page?.contactFields?.jobs?.map((job, index) => (
+        {page?.contactFields?.jobs?.map((job, index) => (
           <div
             key={index}
             className="relative border border-white bg-transparent p-6"
