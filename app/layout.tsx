@@ -5,7 +5,7 @@ import HeaderWrapper from "@/components/Header/HeaderWrapper";
 import Footer from "@/components/Footer";
 import { Providers } from "./providers";
 import { cookies } from "next/headers";
-
+import WhatsappButton from "@/components/WhatsappButton";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -50,6 +50,7 @@ export default async function RootLayout({
           <HeaderWrapper />
           {children}
           <Footer />
+          <WhatsappButton />
         </Providers>
       </body>
     </html>
