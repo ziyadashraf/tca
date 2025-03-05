@@ -1,7 +1,9 @@
 import { fetchPageData, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 
-import HorizontalLine from "./HorizontalLine";
+// Import both horizontal line components
+import RightHorizontalLine from "./RightHorizontalLine";
+import LeftHorizontalLine from "./LeftHorizontalLine";
 
 // Add interface for stats data
 interface Statistic {
@@ -38,6 +40,10 @@ const Stats = async () => {
 
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
+  const direction = lang === "ar" ? "rtl" : "ltr"; // Determine direction
+
+  // Choose the appropriate horizontal line component based on direction
+  const HorizontalLine = direction === "rtl" ? RightHorizontalLine : LeftHorizontalLine;
 
   return (
     <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white overflow-x-hidden">
@@ -57,7 +63,7 @@ const Stats = async () => {
                 <p className="text-black text-lg mb-8">
                   {t(stat.description, lang)}
                 </p>
-                <HorizontalLine mode="" />
+                <HorizontalLine mode="" /> {/* Pass direction if needed */}
               </div>
             )
           )}
