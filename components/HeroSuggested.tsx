@@ -30,7 +30,7 @@ export default async function HeroSuggested() {
           {t(page?.homeFields?.hero?.subText!, lang) ||
             "The first cloud agency in the Kingdom. The first cloud agency in the Kingdom. The first cloud agency in the Kingdom."}
         </p>
-        <div className="mt-10 flex items-center gap-x-6">
+        {/* <div className="mt-10 flex items-center gap-x-6">
           <Button
             style="bg-black px-8 py-3 border-2 border-black text-sm font-semibold text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             href="#contact-form"
@@ -43,7 +43,7 @@ export default async function HeroSuggested() {
           >
             {lang === "ar" ? " تعرف على المزيد" : "Learn more →"}
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
