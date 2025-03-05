@@ -13,9 +13,8 @@ const WhatsappButton = () => {
         setDir(storedLang === 'ar' ? 'rtl' : 'ltr');
     }, []);
 
-    const whatsappNumber = "+966 50 748 6880"; // Replace with your WhatsApp number
-    const whatsappMessage = "Hello!"; // Default message
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappNumber = "+966507486880"; // Replace with your WhatsApp number
+    const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
     return (
         <Link
