@@ -30,14 +30,14 @@ const Partners = async () => {
       </div>
       <div className="flex flex-row flex-wrap justify-between w-full lg:w-2/5 ">
         {page?.homeFields?.partners?.images?.map((img: any, i: number) => (
-          <Image
+          <img
             key={i}
             src={getApiPath(img.image.url)}
             alt={img.image.alt}
             className="object-cover"
             width={160}
             height={160}
-            loading="eager"
+            // loading="eager"
           />
         ))}
       </div>
