@@ -1,9 +1,5 @@
-'use client'
-
 import Image from 'next/image'
 import HeroImage from '@/public/images/Heros.png'
-
-
 
 
 export default function Hero() {

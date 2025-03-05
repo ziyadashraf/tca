@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import hero from "@/public/images/Heros.png";
-import Button from "./Button";
-import Image from "next/image";
 import { fetchPageData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 

@@ -1,11 +1,7 @@
 import { fetchPageData, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
-
-// Import both horizontal line components
 import RightHorizontalLine from "./RightHorizontalLine";
 import LeftHorizontalLine from "./LeftHorizontalLine";
-
-// Add interface for stats data
 interface Statistic {
   number: string;
   description: { en: string; ar: string };

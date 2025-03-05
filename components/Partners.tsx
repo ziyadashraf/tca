@@ -1,7 +1,7 @@
 import { fetchPageData, getApiPath, t } from "@/utils/helpers";
 import { cookies } from "next/headers";
 import TheLine from "./TheLine";
-import Image from "next/image";
+
 const Partners = async () => {
   const { page } = await fetchPageData("/");
 
@@ -30,15 +30,15 @@ const Partners = async () => {
       </div>
       <div className="flex flex-row flex-wrap justify-between w-full lg:w-2/5 ">
         {page?.homeFields?.partners?.images?.map((img: any, i: number) => (
-          <img
-            key={i}
-            src={getApiPath(img.image.url)}
-            alt={img.image.alt}
-            className="object-cover"
-            width={160}
-            height={160}
+          <div key={i} className="w-1/2">
+            <img
+              src={getApiPath(img.image.url)}
+              alt={img.image.alt}
+              className="object-cover"
+
             // loading="eager"
-          />
+            />
+          </div>
         ))}
       </div>
     </div>
