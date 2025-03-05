@@ -15,35 +15,35 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<
     number | null
   >(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentAssetIndex, setCurrentAssetIndex] = useState(0);
 
   const openCarousel = (index: number) => {
     setSelectedProjectIndex(index);
     setIsCarouselOpen(true);
-    setCurrentImageIndex(0);
+    setCurrentAssetIndex(0);
   };
 
-  const nextImage = () => {
+  const nextAsset = () => {
     if (
       selectedProjectIndex !== null &&
-      projects[selectedProjectIndex]?.images
+      projects[selectedProjectIndex]?.assets
     ) {
-      setCurrentImageIndex((prev) =>
-        prev === (projects[selectedProjectIndex].images?.length || 0) - 1
+      setCurrentAssetIndex((prev) =>
+        prev === (projects[selectedProjectIndex].assets?.length || 0) - 1
           ? 0
           : prev + 1
       );
     }
   };
 
-  const previousImage = () => {
+  const previousAsset = () => {
     if (
       selectedProjectIndex !== null &&
-      projects[selectedProjectIndex]?.images
+      projects[selectedProjectIndex]?.assets
     ) {
-      setCurrentImageIndex((prev) =>
+      setCurrentAssetIndex((prev) =>
         prev === 0
-          ? (projects[selectedProjectIndex].images?.length || 0) - 1
+          ? (projects[selectedProjectIndex].assets?.length || 0) - 1
           : prev - 1
       );
     }
@@ -59,7 +59,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
               <button
                 onClick={() => {
                   setIsCarouselOpen(false);
-                  setCurrentImageIndex(0);
+                  setCurrentAssetIndex(0);
                   setSelectedProjectIndex(null);
                 }}
                 className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
@@ -67,37 +67,52 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 Close
               </button>
               <div className="w-full h-full relative">
-                {projects[selectedProjectIndex].images?.[currentImageIndex]
-                  ?.image && (
-                  <Image
-                    src={getApiPath(
-                      projects[selectedProjectIndex].images[currentImageIndex]
-                        .image.url
-                    )}
-                    alt={projects[selectedProjectIndex].name}
-                    fill
-                    className="object-contain"
-                  />
-                )}
+                {projects[selectedProjectIndex].assets?.[currentAssetIndex]
+                  ?.media &&
+                  (projects[selectedProjectIndex].assets[
+                    currentAssetIndex
+                  ].media.mimeType.startsWith("video/") ? (
+                    <video
+                      src={getApiPath(
+                        projects[selectedProjectIndex].assets[currentAssetIndex]
+                          .media.url
+                      )}
+                      className="w-full h-full object-contain"
+                      controls
+                      autoPlay
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <Image
+                      src={getApiPath(
+                        projects[selectedProjectIndex].assets[currentAssetIndex]
+                          .media.url
+                      )}
+                      alt={projects[selectedProjectIndex].name.en}
+                      fill
+                      className="object-contain"
+                    />
+                  ))}
                 <button
-                  onClick={previousImage}
+                  onClick={previousAsset}
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
                 >
                   ←
                 </button>
                 <button
-                  onClick={nextImage}
+                  onClick={nextAsset}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
                 >
                   →
                 </button>
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                  {projects[selectedProjectIndex].images?.map((_, index) => (
+                  {projects[selectedProjectIndex].assets?.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentImageIndex(index)}
+                      onClick={() => setCurrentAssetIndex(index)}
                       className={`w-2 h-2 rounded-full ${
-                        currentImageIndex === index ? "bg-white" : "bg-white/50"
+                        currentAssetIndex === index ? "bg-white" : "bg-white/50"
                       }`}
                     />
                   ))}

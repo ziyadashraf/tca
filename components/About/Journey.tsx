@@ -5,8 +5,6 @@ import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { Timeline } from "../ui/timeline";
 import { fetchPageData, t } from "@/utils/helpers";
-import { useMemo } from "react";
-
 //on arrival change to purple
 const Journey = () => {
   const { data, isLoading } = useQuery({

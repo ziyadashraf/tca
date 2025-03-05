@@ -10,10 +10,16 @@ export default async function HeroSuggested() {
   const lang = (cookieStore.get("lang")?.value || "en") as "en" | "ar";
 
   return (
-    <div className="relative w-full h-screen bg-cover bg-center" style={{
-      backgroundImage: `url(${getApiPath(page?.homeFields?.hero?.heroImage?.url || "") || hero.src})`
-    }}>
-      <div className="absolute inset-0 bg-black opacity-50"></div> {/* Optional overlay for better text visibility */}
+    <div
+      className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url("${
+          getApiPath(page?.homeFields?.hero?.heroImage?.url || "") || hero.src
+        }")`,
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-50"></div>{" "}
+      {/* Optional overlay for better text visibility */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white">
         <h1 className="text-4xl font-medium tracking-tight sm:text-6xl fade-in">
           {t(page?.homeFields?.hero?.heroText!, lang) || (

@@ -2,24 +2,25 @@
 "use client";
 
 import Welcome from "@/components/Welcome";
+
 import Section from "@/components/Section";
+
 import Jobs from "@/components/Contact/Jobs";
 import Form from "@/components/Form";
 import Cookies from "js-cookie";
-
 import { useQuery } from "@tanstack/react-query";
-import { fetchPageData, getApiPath, t } from "@/utils/helpers";
-import { useMemo } from "react";
+import { t, fetchPageData } from "@/utils/helpers";
+import { Page } from "@/types/payload-types";
 
 const ContactPage = () => {
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["contact"],
     queryFn: async () => await fetchPageData("/contact"),
   });
 
   const lang = Cookies.get("lang");
 
-  if (!data || isLoading) return null;
+  if (!data) return null;
 
   return (
     <div>

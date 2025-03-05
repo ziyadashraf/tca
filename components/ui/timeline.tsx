@@ -61,7 +61,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-200 rtl:text-right">
                 {item.title}
               </h3>
-              <div className="overflow-wrap break-words">{item.content}</div>
+              <div className="overflow-wrap break-words whitespace-pre-wrap">
+                {item.content}
+              </div>
             </div>
           </div>
         ))}

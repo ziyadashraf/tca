@@ -151,14 +151,13 @@ export type Page = {
 
 export interface Project {
   id: string;
+  title: string;
   service: string | Service;
-  name: string;
-  description: {
-    en: string;
-    ar: string;
-  };
-  images: {
-    image: Media;
+  name: MultilingualField;
+  slug: string;
+  assets: {
+    id: string;
+    media: Media;
   }[];
   createdAt: string;
   updatedAt: string;

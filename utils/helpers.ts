@@ -1,11 +1,6 @@
 import Cookies from "js-cookie";
 import { stringify } from "qs-esm";
-import {
-  Page,
-  Service,
-  NewsItem,
-  Project,
-} from "../types/payload-types";
+import { Page, Service, NewsItem, Project } from "../types/payload-types";
 
 export const t = (obj: { en: string; ar: string }, lang: string = "en") => {
   return lang === "en" ? obj?.en : obj?.ar;
@@ -18,8 +13,8 @@ export const switchLanguage = (lang: "en" | "ar") => {
 export const getLanguage = (): "en" | "ar" =>
   Cookies.get("lang") as "en" | "ar";
 
-export const API_URL = "https://admin.tca.com.sa";
-// export const API_URL = "http://localhost:3001";
+// export const API_URL = "https://admin.tca.com.sa";
+export const API_URL = "http://localhost:3001";
 
 export const getApiPath = (path: string) => {
   if (!path) return "";
