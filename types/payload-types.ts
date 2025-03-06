@@ -155,10 +155,7 @@ export interface Project {
   service: string | Service;
   name: MultilingualField;
   slug: string;
-  assets: {
-    id: string;
-    media: Media;
-  }[];
+  assets: Media[];
   createdAt: string;
   updatedAt: string;
 }

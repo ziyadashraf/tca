@@ -24,8 +24,6 @@ export default function ServicePageClient({
     button?.click();
   };
 
-  console.log(projects);
-
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -48,23 +46,14 @@ export default function ServicePageClient({
               className="relative isolate flex flex-col justify-end overflow-hidden  bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => handleProjectClick(index)}
             >
-              {project.assets?.[0]?.media &&
-                (project.assets[0].media.mimeType.startsWith("video/") ? (
-                  <video
-                    src={getApiPath(project.assets[0].media.url)}
-                    className="absolute inset-0 -z-10 h-full w-full object-cover "
-                    muted
-                    loop
-                    playsInline
-                  />
-                ) : (
-                  <Image
-                    src={getApiPath(project.assets[0].media.url)}
-                    alt={project.name.en}
-                    fill
-                    className="absolute inset-0 -z-10 h-full w-full object-cover "
-                  />
-                ))}
+              {project.assets && project.assets.length > 0 && (
+                <Image
+                  src={getApiPath(project.assets[0].url) || "/Logo.svg"}
+                  alt={project.assets[0].alt || ""}
+                  fill
+                  className="absolute inset-0 -z-10 h-full w-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
               <h3 className="relative z-10 mt-3 text-lg font-semibold leading-6 text-white">
                 {t(project.name, lang)}

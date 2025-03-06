@@ -4,7 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { Project } from "@/types/payload-types";
 import { getApiPath } from "@/utils/helpers";
-import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -69,14 +73,14 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
               </button>
               <div className="w-full h-full relative">
                 {projects[selectedProjectIndex].assets?.[currentAssetIndex]
-                  ?.media &&
+                  ?.url &&
                   (projects[selectedProjectIndex].assets[
                     currentAssetIndex
-                  ].media.mimeType.startsWith("video/") ? (
+                  ].mimeType.startsWith("video/") ? (
                     <video
                       src={getApiPath(
                         projects[selectedProjectIndex].assets[currentAssetIndex]
-                          .media.url
+                          .url
                       )}
                       className="w-full h-full object-contain"
                       controls
@@ -88,7 +92,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     <Image
                       src={getApiPath(
                         projects[selectedProjectIndex].assets[currentAssetIndex]
-                          .media.url
+                          .url
                       )}
                       alt={projects[selectedProjectIndex].name.en}
                       fill
@@ -112,8 +116,9 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     <button
                       key={index}
                       onClick={() => setCurrentAssetIndex(index)}
-                      className={`w-2 h-2 rounded-full ${currentAssetIndex === index ? "bg-white" : "bg-white/50"
-                        }`}
+                      className={`w-2 h-2 rounded-full ${
+                        currentAssetIndex === index ? "bg-white" : "bg-white/50"
+                      }`}
                     />
                   ))}
                 </div>
