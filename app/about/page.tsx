@@ -23,7 +23,7 @@ const About = async () => {
   const lang = cookieStore.get("lang")?.value;
 
   return (
-    <div>
+    <div >
       <Welcome
         heading={
           t(page?.aboutFields?.welcomeSection?.title!, lang) ||

@@ -181,7 +181,7 @@ const Form = () => {
 
   return (
     <div
-      id="contact-form"
+      id="contact"
       style={{
         backgroundImage: `url(${img.src})`,
         backgroundSize: "cover",
@@ -247,9 +247,8 @@ const Form = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className={`bg-transparent text-white border-b ${
-                  errors.name ? "border-red-500" : "border-white"
-                } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
+                className={`bg-transparent text-white border-b ${errors.name ? "border-red-500" : "border-white"
+                  } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
               />
               {errors.name && (
                 <span className="text-red-500 text-sm mt-1">{errors.name}</span>
@@ -270,9 +269,8 @@ const Form = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`bg-transparent text-white border-b ${
-                  errors.email ? "border-red-500" : "border-white"
-                } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
+                className={`bg-transparent text-white border-b ${errors.email ? "border-red-500" : "border-white"
+                  } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
               />
               {errors.email && (
                 <span className="text-red-500 text-sm mt-1">
@@ -295,9 +293,8 @@ const Form = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className={`bg-transparent text-white border-b ${
-                  errors.phone ? "border-red-500" : "border-white"
-                } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
+                className={`bg-transparent text-white border-b ${errors.phone ? "border-red-500" : "border-white"
+                  } p-2 outline-none placeholder:text-gray-400 focus:border-b-2`}
               />
               {errors.phone && (
                 <span className="text-red-500 text-sm mt-1">
@@ -319,9 +316,8 @@ const Form = () => {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className={`bg-transparent text-white border-b ${
-                  errors.description ? "border-red-500" : "border-white"
-                } p-2 outline-none placeholder:text-gray-400 focus:border-b-2 resize-none`}
+                className={`bg-transparent text-white border-b ${errors.description ? "border-red-500" : "border-white"
+                  } p-2 outline-none placeholder:text-gray-400 focus:border-b-2 resize-none`}
               />
               {errors.description && (
                 <span className="text-red-500 text-sm mt-1">
@@ -332,11 +328,10 @@ const Form = () => {
 
             {submitStatus.type && (
               <div
-                className={`p-4 rounded ${
-                  submitStatus.type === "success"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-red-100 text-red-800"
-                }`}
+                className={`p-4 rounded ${submitStatus.type === "success"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
+                  }`}
               >
                 {submitStatus.message}
               </div>
@@ -345,25 +340,24 @@ const Form = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`bg-white text-black px-3 py-3 text-sm font-semibold shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-1/5 ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`bg-white text-black px-3 py-3 text-sm font-semibold shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-1/5 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
             >
               {isSubmitting
                 ? t(
-                    {
-                      en: "Submitting...",
-                      ar: "جاري الإرسال...",
-                    },
-                    lang
-                  )
+                  {
+                    en: "Submitting...",
+                    ar: "جاري الإرسال...",
+                  },
+                  lang
+                )
                 : t(
-                    {
-                      en: "Submit",
-                      ar: "إرسال",
-                    },
-                    lang
-                  )}
+                  {
+                    en: "Submit",
+                    ar: "إرسال",
+                  },
+                  lang
+                )}
             </button>
           </div>
         </form>

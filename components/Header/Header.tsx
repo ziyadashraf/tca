@@ -153,14 +153,14 @@ export default function Header({ services }: HeaderProps) {
           </div>
 
           <Link
-            href="/about"
+            href="#about"
             className="text-sm font-medium leading-6 text-gray-100"
           >
             {lang === "ar" ? "المزيد عننا" : "About"}
           </Link>
 
           <Link
-            href="/contact"
+            href="#contact"
             className="text-sm font-medium leading-6 text-gray-100"
           >
             {lang === "ar" ? "تواصل معنا" : "Contact"}
@@ -262,14 +262,14 @@ export default function Header({ services }: HeaderProps) {
                     {lang === "ar" ? "الرئيسية" : "Home"}
                   </Link>
                   <Link
-                    href="/about"
+                    href="#about"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {lang === "ar" ? "المزيد عننا" : "About"}
                   </Link>
                   <Link
-                    href="/contact"
+                    href="#contact"
                     className="-mx-3 block px-3 py-2 text-base font-medium leading-7 text-gray-100 hover:bg-gray-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >

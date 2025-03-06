@@ -42,7 +42,7 @@ const Stats = async () => {
   const HorizontalLine = direction === "rtl" ? RightHorizontalLine : LeftHorizontalLine;
 
   return (
-    <div className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white overflow-x-hidden">
+    <div id="about" className="lg:px-64 lg:py-24 md:py-16 md:px-12 py-12 px-6 flex flex-row justify-between items-start bg-white overflow-x-hidden">
       <div className="w-full">
         <h6 className="text-black text-2xl font-medium mb-12">
           {t(page?.homeFields?.stats?.title!, lang) || "TCA in Numbers"}

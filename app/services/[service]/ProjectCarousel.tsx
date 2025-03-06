@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Project } from "@/types/payload-types";
 import { getApiPath } from "@/utils/helpers";
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -62,9 +63,9 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   setCurrentAssetIndex(0);
                   setSelectedProjectIndex(null);
                 }}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+                className="absolute top-4 right-4 bg-black p-2 rounded-full text-white hover:bg-gray-800 z-10"
               >
-                Close
+                <XMarkIcon className="h-6 w-6" />
               </button>
               <div className="w-full h-full relative">
                 {projects[selectedProjectIndex].assets?.[currentAssetIndex]
@@ -96,24 +97,23 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   ))}
                 <button
                   onClick={previousAsset}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full text-black hover:bg-gray-200 z-10"
                 >
-                  ←
+                  <ChevronLeftIcon className="h-8 w-8" />
                 </button>
                 <button
                   onClick={nextAsset}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full text-black hover:bg-gray-200 z-10"
                 >
-                  →
+                  <ChevronRightIcon className="h-8 w-8" />
                 </button>
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
                   {projects[selectedProjectIndex].assets?.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentAssetIndex(index)}
-                      className={`w-2 h-2 rounded-full ${
-                        currentAssetIndex === index ? "bg-white" : "bg-white/50"
-                      }`}
+                      className={`w-2 h-2 rounded-full ${currentAssetIndex === index ? "bg-white" : "bg-white/50"
+                        }`}
                     />
                   ))}
                 </div>
