@@ -43,6 +43,7 @@ export default function Header({ services }: HeaderProps) {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [lang, setLang] = useState("en");
+  const [languagePopoverOpen, setLanguagePopoverOpen] = useState(false);
 
   const router = useRouter();
 
@@ -65,14 +66,14 @@ export default function Header({ services }: HeaderProps) {
   const handleSwitchLanguage = (newLang: "en" | "ar") => {
     Cookies.set("lang", newLang);
     setLang(newLang);
+    setLanguagePopoverOpen(false);
     router.refresh();
   };
 
   return (
     <header
-      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <nav
         aria-label="Global"
@@ -81,7 +82,7 @@ export default function Header({ services }: HeaderProps) {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">TCA</span>
-            <Image src={Logo} alt="TCA logo" width={100} height={100} />
+            <Image src={Logo} alt="TCA logo" width={125} height={125} />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -117,7 +118,7 @@ export default function Header({ services }: HeaderProps) {
               />
             </div>
 
-            <div className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out">
+            <div className={`invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out ${languagePopoverOpen ? 'visible opacity-100 translate-y-0' : ''}`}>
               <div className="p-4">
                 {services?.map((item: Service, i: number) => (
                   <div
@@ -167,43 +168,44 @@ export default function Header({ services }: HeaderProps) {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
-              <GlobeAltIcon className="h-5 w-5" />
-              {lang === "en" ? "English" : "عربي"}
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="h-5 w-5 flex-none text-gray-500"
-              />
-            </PopoverButton>
-
-            <PopoverPanel
-              transition
-              className="absolute right-0 top-full z-10 mt-3 w-40 overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-            >
-              <div className="p-2">
-                <button
-                  onClick={() => handleSwitchLanguage("en")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    lang === "en"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
+            {({ close }) => (
+              <>
+                <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
+                  <GlobeAltIcon className="h-5 w-5" />
+                  {lang === "en" ? "English" : "عربي"}
+                  <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-500" />
+                </PopoverButton>
+                <PopoverPanel
+                  transition
+                  className="absolute right-0 top-full z-10 mt-3 w-40 overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                 >
-                  English
-                </button>
-                <button
-                  onClick={() => handleSwitchLanguage("ar")}
-                  className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
-                    lang === "ar"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                  }`}
-                >
-                  عربي
-                </button>
-              </div>
-            </PopoverPanel>
+                  <div className="p-2">
+                    <button
+                      onClick={() => {
+                        handleSwitchLanguage("en");
+                        close(); // Programmatically close the popover
+                      }}
+                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "en" ? "bg-gray-900 text-white" : "text-gray-100 hover:bg-gray-900"
+                        }`}
+                    >
+                      English
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSwitchLanguage("ar");
+                        close(); // Programmatically close the popover
+                      }}
+                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "ar" ? "bg-gray-900 text-white" : "text-gray-100 hover:bg-gray-900"
+                        }`}
+                    >
+                      عربي
+                    </button>
+                  </div>
+                </PopoverPanel>
+              </>
+            )}
           </Popover>
+
         </div>
       </nav>
       <Dialog
@@ -276,23 +278,27 @@ export default function Header({ services }: HeaderProps) {
                 </div>
                 <div className="space-y-1">
                   <button
-                    onClick={() => handleSwitchLanguage("en")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
-                      lang === "en"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    onClick={() => {
+                      handleSwitchLanguage("en");
+                      setLanguagePopoverOpen(false);
+                    }}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "en"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     English
                   </button>
                   <button
-                    onClick={() => handleSwitchLanguage("ar")}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
-                      lang === "ar"
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-100 hover:bg-gray-900"
-                    }`}
+                    onClick={() => {
+                      handleSwitchLanguage("ar");
+                      setLanguagePopoverOpen(false);
+                    }}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "ar"
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-100 hover:bg-gray-900"
+                      }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     عربي
