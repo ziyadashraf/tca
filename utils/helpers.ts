@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { stringify } from "qs-esm";
-import { Page, Service, NewsItem, Project } from "../types/payload-types";
+import { Page, Service, NewsItem, Project, Form } from "../types/payload-types";
 
 export const t = (obj: { en: string; ar: string }, lang: string = "en") => {
   return lang === "en" ? obj?.en : obj?.ar;
@@ -13,8 +13,8 @@ export const switchLanguage = (lang: "en" | "ar") => {
 export const getLanguage = (): "en" | "ar" =>
   Cookies.get("lang") as "en" | "ar";
 
-export const API_URL = "https://admin.tca.com.sa";
-// export const API_URL = "http://localhost:3001";
+// export const API_URL = "https://admin.tca.com.sa";
+export const API_URL = "http://localhost:3001";
 
 export const getApiPath = (path: string) => {
   if (!path) return "";
@@ -23,6 +23,36 @@ export const getApiPath = (path: string) => {
 };
 
 ///////////////////////////////////////////////////////////////
+
+export const fetchFormData = async (
+  form_name: string
+): Promise<{ form: Form }> => {
+  const query = stringify(
+    {
+      where: {
+        template: {
+          equals: form_name,
+        },
+      },
+    },
+    {
+      addQueryPrefix: true,
+    }
+  );
+
+  const res = await fetch(getApiPath(`/api/forms${query}`), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+
+  const form = data?.docs[0] || null;
+
+  return { form };
+};
 
 export const fetchNewsData = async (): Promise<{ news: NewsItem[] }> => {
   const res = await fetch(getApiPath("/api/news"), {

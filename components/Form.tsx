@@ -4,7 +4,8 @@ import { useState, FormEvent, useEffect } from "react";
 import Cookies from "js-cookie";
 import img from "@/public/images/FormPic.png";
 import TheLine from "./TheLine";
-import { fetchPageData, t } from "@/utils/helpers";
+import { fetchFormData, fetchPageData, t } from "@/utils/helpers";
+import { Form as FormType } from "@/types/payload-types";
 
 interface FormData {
   name: string;
@@ -36,6 +37,8 @@ const Form = () => {
   }>({ type: null, message: "" });
   const [contactEmail, setContactEmail] = useState<string>("");
 
+  const [form, setForm] = useState<FormType | null>(null);
+
   useEffect(() => {
     const getContactData = async () => {
       try {
@@ -49,7 +52,17 @@ const Form = () => {
       }
     };
 
+    const getFormData = async () => {
+      try {
+        const { form } = await fetchFormData("contact");
+        setForm(form);
+      } catch (error) {
+        console.error("Error fetching form data:", error);
+      }
+    };
+
     getContactData();
+    getFormData();
   }, []);
 
   const validateForm = (): boolean => {
@@ -205,31 +218,13 @@ const Form = () => {
 
           <div className="md:ps-6">
             <p className="text-white text-lg font-light mb-4 uppercase">
-              {t(
-                {
-                  en: "Why Choose Us?",
-                  ar: "لماذا تختارنا؟",
-                },
-                lang
-              )}
+              {t(form?.contactForm?.title!, lang)}
             </p>
             <h6 className="text-white text-2xl font-medium mb-8">
-              {t(
-                {
-                  en: "Elevate Your Brand with Innovative Design Solutions",
-                  ar: "ارفع علامتك التجارية مع حلول تصميم مبتكرة",
-                },
-                lang
-              )}
+              {t(form?.contactForm?.subtitle!, lang)}
             </h6>
             <p className="text-white text-md text-justify">
-              {t(
-                {
-                  en: "At TCA, we take a unique approach to design, leveraging cutting-edge techniques and a forward-thinking mindset to redefine creative possibilities. Our commitment to innovation and quality sets us apart in the industry.",
-                  ar: "في TCA، نتبنى نهجًا فريدًا في التصميم، مستفيدين من تقنيات متطورة وعقلية متقدمة لإعادة تعريف الإمكانيات الإبداعية. التزامنا بالابتكار والجودة يميزنا في الصناعة.",
-                },
-                lang
-              )}
+              {t(form?.contactForm?.description!, lang)}
             </p>
           </div>
         </div>

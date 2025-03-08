@@ -15,6 +15,22 @@ export type Media = {
   alt?: string;
 };
 
+// Form Types
+export type ContactFormContent = {
+  title: MultilingualField;
+  subtitle: MultilingualField;
+  description: MultilingualField;
+};
+
+export type Form = {
+  id: string;
+  title: string;
+  template: "contact";
+  contactForm?: ContactFormContent;
+  createdAt: string;
+  updatedAt: string;
+};
+
 // News Types
 export type NewsAuthor = {
   profileImage: Media;
