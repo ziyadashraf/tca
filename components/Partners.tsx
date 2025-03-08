@@ -15,7 +15,7 @@ const Partners = async () => {
 
         {/* <h6 className='text-white text-2xl font-medium mb-8'>Our Partners</h6> */}
         <div className="">
-          <h6 className="text-white text-xl font-light mb-6 lg:mb-8 uppercase  lg:text-left">
+          <h6 className="text-white text-xl font-light mb-6 lg:mb-8 uppercase  lg:text-left rtl:text-right">
             {t(page?.homeFields?.partners?.title!, lang) || "Our Partners"}
           </h6>
 
