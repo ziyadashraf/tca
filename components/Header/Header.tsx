@@ -29,7 +29,7 @@ import Logo from "@/public/Logo.svg";
 import Cookies from "js-cookie";
 
 import { getApiPath, t } from "@/utils/helpers";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Service } from "@/types/payload-types";
@@ -46,6 +46,7 @@ export default function Header({ services }: HeaderProps) {
   const [languagePopoverOpen, setLanguagePopoverOpen] = useState(false);
 
   const router = useRouter();
+  const currentPath = usePathname();
 
   useEffect(() => {
     const cookieLang = Cookies.get("lang") || "en";
@@ -152,19 +153,23 @@ export default function Header({ services }: HeaderProps) {
             </div>
           </div>
 
-          <Link
-            href="#about"
-            className="text-sm font-medium leading-6 text-gray-100"
-          >
-            {lang === "ar" ? "المزيد عننا" : "About"}
-          </Link>
+          {currentPath === '/' && (
+            <>
+              <Link
+                href="#about"
+                className="text-sm font-medium leading-6 text-gray-100"
+              >
+                {lang === "ar" ? "المزيد عننا" : "About"}
+              </Link>
 
-          <Link
-            href="#contact"
-            className="text-sm font-medium leading-6 text-gray-100"
-          >
-            {lang === "ar" ? "تواصل معنا" : "Contact"}
-          </Link>
+              <Link
+                href="#contact"
+                className="text-sm font-medium leading-6 text-gray-100"
+              >
+                {lang === "ar" ? "تواصل معنا" : "Contact"}
+              </Link>
+            </>
+          )}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Popover className="relative">
