@@ -1,6 +1,13 @@
 import Cookies from "js-cookie";
 import { stringify } from "qs-esm";
-import { Page, Service, NewsItem, Project, Form } from "../types/payload-types";
+import {
+  Page,
+  Service,
+  NewsItem,
+  Project,
+  Form,
+  Component,
+} from "../types/payload-types";
 
 export const t = (obj: { en: string; ar: string }, lang: string = "en") => {
   return lang === "en" ? obj?.en : obj?.ar;
@@ -23,6 +30,36 @@ export const getApiPath = (path: string) => {
 };
 
 ///////////////////////////////////////////////////////////////
+
+export const fetchComponentData = async (
+  component_name: string
+): Promise<{ component: Component }> => {
+  const query = stringify(
+    {
+      where: {
+        template: {
+          equals: component_name,
+        },
+      },
+    },
+    {
+      addQueryPrefix: true,
+    }
+  );
+
+  const res = await fetch(getApiPath(`/api/components${query}`), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+
+  const component = data?.docs[0] || null;
+
+  return { component };
+};
 
 export const fetchFormData = async (
   form_name: string

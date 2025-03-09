@@ -15,6 +15,19 @@ export type Media = {
   alt?: string;
 };
 
+// Component Types
+export type NavbarContent = {
+  logo: Media;
+};
+
+export type Component = {
+  id: string;
+  template: "navbar";
+  navbar?: NavbarContent;
+  createdAt: string;
+  updatedAt: string;
+};
+
 // Form Types
 export type ContactFormContent = {
   title: MultilingualField;

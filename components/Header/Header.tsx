@@ -28,11 +28,12 @@ import Logo from "@/public/Logo.svg";
 // import WebDevIcon from "@/public/webdevelopment.svg";
 import Cookies from "js-cookie";
 
-import { getApiPath, t } from "@/utils/helpers";
+import { fetchComponentData, getApiPath, t } from "@/utils/helpers";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Service } from "@/types/payload-types";
+import { useQuery } from "@tanstack/react-query";
 
 interface HeaderProps {
   services: Service[];
@@ -44,6 +45,11 @@ export default function Header({ services }: HeaderProps) {
   const [visible, setVisible] = useState(true);
   const [lang, setLang] = useState("en");
   const [languagePopoverOpen, setLanguagePopoverOpen] = useState(false);
+
+  const { data: navbarData } = useQuery({
+    queryKey: ["navbar"],
+    queryFn: () => fetchComponentData("navbar"),
+  });
 
   const router = useRouter();
   const currentPath = usePathname();
@@ -73,8 +79,9 @@ export default function Header({ services }: HeaderProps) {
 
   return (
     <header
-      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"
-        }`}
+      className={`bg-black sticky w-full top-0 z-50 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <nav
         aria-label="Global"
@@ -83,7 +90,13 @@ export default function Header({ services }: HeaderProps) {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">TCA</span>
-            <Image src={Logo} alt="TCA logo" width={125} height={125} />
+            <Image
+              priority
+              src={getApiPath(navbarData?.component?.navbar?.logo.url!) || Logo}
+              alt="TCA logo"
+              width={125}
+              height={125}
+            />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -119,7 +132,11 @@ export default function Header({ services }: HeaderProps) {
               />
             </div>
 
-            <div className={`invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out ${languagePopoverOpen ? 'visible opacity-100 translate-y-0' : ''}`}>
+            <div
+              className={`invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden bg-black shadow-lg ring-1 ring-gray-700 transition-all duration-200 ease-out ${
+                languagePopoverOpen ? "visible opacity-100 translate-y-0" : ""
+              }`}
+            >
               <div className="p-4">
                 {services?.map((item: Service, i: number) => (
                   <div
@@ -153,7 +170,7 @@ export default function Header({ services }: HeaderProps) {
             </div>
           </div>
 
-          {currentPath === '/' && (
+          {currentPath === "/" && (
             <>
               <Link
                 href="#about"
@@ -178,7 +195,10 @@ export default function Header({ services }: HeaderProps) {
                 <PopoverButton className="flex items-center gap-x-1 text-sm font-medium leading-6 text-gray-100">
                   <GlobeAltIcon className="h-5 w-5" />
                   {lang === "en" ? "English" : "عربي"}
-                  <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-500" />
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="h-5 w-5 flex-none text-gray-500"
+                  />
                 </PopoverButton>
                 <PopoverPanel
                   transition
@@ -190,8 +210,11 @@ export default function Header({ services }: HeaderProps) {
                         handleSwitchLanguage("en");
                         close(); // Programmatically close the popover
                       }}
-                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "en" ? "bg-gray-900 text-white" : "text-gray-100 hover:bg-gray-900"
-                        }`}
+                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
+                        lang === "en"
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-100 hover:bg-gray-900"
+                      }`}
                     >
                       English
                     </button>
@@ -200,8 +223,11 @@ export default function Header({ services }: HeaderProps) {
                         handleSwitchLanguage("ar");
                         close(); // Programmatically close the popover
                       }}
-                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${lang === "ar" ? "bg-gray-900 text-white" : "text-gray-100 hover:bg-gray-900"
-                        }`}
+                      className={`block w-full px-3 py-2 text-left text-sm leading-6 ${
+                        lang === "ar"
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-100 hover:bg-gray-900"
+                      }`}
                     >
                       عربي
                     </button>
@@ -210,7 +236,6 @@ export default function Header({ services }: HeaderProps) {
               </>
             )}
           </Popover>
-
         </div>
       </nav>
       <Dialog
@@ -287,10 +312,11 @@ export default function Header({ services }: HeaderProps) {
                       handleSwitchLanguage("en");
                       setLanguagePopoverOpen(false);
                     }}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "en"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                      }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
+                      lang === "en"
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-100 hover:bg-gray-900"
+                    }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     English
@@ -300,10 +326,11 @@ export default function Header({ services }: HeaderProps) {
                       handleSwitchLanguage("ar");
                       setLanguagePopoverOpen(false);
                     }}
-                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${lang === "ar"
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-100 hover:bg-gray-900"
-                      }`}
+                    className={`-mx-3 flex w-full items-center gap-x-2 px-3 py-2 text-base font-medium leading-7 ${
+                      lang === "ar"
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-100 hover:bg-gray-900"
+                    }`}
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     عربي
