@@ -79,6 +79,11 @@ export type Service = {
 export type HomeHeroSection = {
   heroText: MultilingualField;
   subText: MultilingualField;
+  description: MultilingualField;
+  info: {
+    title: MultilingualField;
+    description: MultilingualField;
+  };
   heroImage: Media;
 };
 
